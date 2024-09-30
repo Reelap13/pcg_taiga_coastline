@@ -12,6 +12,11 @@ namespace PCG_Map.Chunk
         {
             Terrain terrain = Instantiate(_terrain_pref) as Terrain;
 
+            TerrainData original_data = terrain.terrainData;
+            TerrainData new_data = Instantiate(original_data);
+
+            terrain.terrainData = new_data;
+
             return terrain;
         }
     }

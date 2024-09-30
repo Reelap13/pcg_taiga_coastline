@@ -1,3 +1,4 @@
+using PCG_Map.Heights;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,6 +11,7 @@ namespace PCG_Map.Chunk
         [field: SerializeField]
         public ChunksFactory ChunksFactory { get; private set; }
 
+        [SerializeField] private HeightsAgent _heights_agent;
         [SerializeField] private TerrainCreator _terrain_creator;
 
         public Vector2Int Size => ChunksFactory.Size;
@@ -22,18 +24,18 @@ namespace PCG_Map.Chunk
                 position,
                 Size,
                 HeightsMapResolution,
-                CalculateHeights(),
+                CalculateHeights(position),
                 CalculateTextures(),
                 CreateTerrain(),
                 GenerateObjects());
             return chunk;
         }
 
-        private Matrix2D CalculateHeights()
+        private Matrix2D CalculateHeights(Vector2 position)
         {
             Matrix2D map = new(HeightsMapResolution);
             map.FillWithPerlinNoise(100);
-            return map;
+            return _heights_agent.GetHeights(position, Size, HeightsMapResolution);
         }
 
         private Matrix2D CalculateTextures()

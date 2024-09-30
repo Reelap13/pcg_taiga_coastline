@@ -12,9 +12,17 @@ namespace PCG_Map.Chunk
 
         [SerializeField] private ChunksFactory _chunks_factory;
 
-        private void Start()
+        [SerializeField] private int radius = 3;
+
+        public void CreateChunks()
         {
-            _chunks_factory.CreateChunk(new(0, 0));
+            for (int i = -radius; i <= radius; i++)
+            {
+                for (int j = -radius; j <= radius; j++)
+                {
+                    _chunks_factory.CreateChunk(ChunkSize * new Vector2(i, j));
+                }
+            }
         }
     }
 }

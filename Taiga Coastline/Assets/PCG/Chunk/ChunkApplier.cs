@@ -24,12 +24,11 @@ namespace PCG_Map.Chunk
         public void Apply()
         {
             SetChilds();
-            Debug.Log("Set childs");
             ApplySize();
             ApplyPosition();
-            Debug.Log("Set position");
+            Debug.Log(Terrain.terrainData.size);
             ApplyHeights();
-            Debug.Log("Set heights map");
+            Debug.Log(Terrain.terrainData.size);
         }
 
         private void SetChilds()
@@ -41,22 +40,24 @@ namespace PCG_Map.Chunk
 
         private void ApplySize()
         {
-            Terrain.terrainData.size = new Vector3(Size.x, Terrain.terrainData.size.y, Size.y);
+            Terrain.terrainData.heightmapResolution = HeightsMapReoslution;
+            Terrain.terrainData.size = new Vector3(Size.x, Generator.Instance.HeightsAgent.TerrainHeight, Size.y);
         }
 
         private void ApplyPosition()
         {
-            Terrain.transform.position = new Vector3(Position.x, 0, Position.y);
+            ChunkObj.transform.position = new Vector3(Position.x, 0, Position.y);
         }
 
         private void ApplyHeights()
         {
-            Terrain.terrainData.heightmapResolution = HeightsMapReoslution;
-
             float[,] height_map = new float[HeightsMapReoslution, HeightsMapReoslution];
             for (int i = 0; i < HeightsMapReoslution; ++i)
                 for (int j = 0; j < HeightsMapReoslution; ++j)
-                    height_map[i, j] = Heights[i, j];
+                {
+                    Debug.Log($"{Position.x} {Position.y} | {i} {j} {Heights[i, j]}");
+                    height_map[i, j] = Heights[j, i];
+                }
             Terrain.terrainData.SetHeights(0, 0, height_map);
         }
 

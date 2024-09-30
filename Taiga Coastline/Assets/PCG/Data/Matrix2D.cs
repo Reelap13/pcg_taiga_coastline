@@ -30,7 +30,6 @@ public class Matrix2D
         {
             for (int y = 0; y < Height; y++)
             {
-                // Генерация значения шума Перлина с учетом масштаба
                 float xCoord = (float)x / Width * scale;
                 float yCoord = (float)y / Height * scale;
 
