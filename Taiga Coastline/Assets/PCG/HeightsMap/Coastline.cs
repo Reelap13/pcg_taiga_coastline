@@ -24,9 +24,6 @@ namespace PCG_Map.Heights
         {
             GenerateCoastline();
             DrawLine();
-            Debug.Log(GetYValue(2.5f));
-            Debug.Log(GetYValue(17f));
-            Debug.Log(GetYValue(31f));
         }
 
         private void GenerateCoastline()
@@ -67,7 +64,7 @@ namespace PCG_Map.Heights
 
             for (int i = 0; i < _points.Length; i++)
             {
-                lineRenderer.SetPosition(i, new(_points[i].x, 0, _points[i].y));
+                lineRenderer.SetPosition(i, new(_points[i].x, 55, _points[i].y));
             }
         }
 

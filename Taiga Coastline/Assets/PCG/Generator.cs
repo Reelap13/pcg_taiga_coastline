@@ -26,10 +26,6 @@ namespace PCG_Map
             TexturesAgent.Initialize();
             yield return null;
             _chunk_manager.CreateChunks();
-
-            Debug.Log(HeightsAgent.GetHeight(new(0, 0)));
-            Debug.Log(HeightsAgent.GetHeight(new(55, 55)));
-            Debug.Log(HeightsAgent.GetHeight(new(-55, -55)));
         }
     }
 }

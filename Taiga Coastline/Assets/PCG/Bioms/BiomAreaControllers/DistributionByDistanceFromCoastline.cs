@@ -13,5 +13,14 @@ namespace PCG_Map.Bioms.Area
             float offset = HeightsAgent.Instance.GetOffsetsFromCoastline(position);
             return _area_interval.x <= offset && offset <= _area_interval.y;
         }
+
+        public float GetDistanceFromBoarders(Vector2 position)
+        {
+            if (!IsInBiom(position))
+                return -1;
+
+            float offset = HeightsAgent.Instance.GetOffsetsFromCoastline(position);
+            return Mathf.Max(offset - _area_interval.x, _area_interval.y - offset);
+        }
     }
 }

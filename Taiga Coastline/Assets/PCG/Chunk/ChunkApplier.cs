@@ -35,8 +35,6 @@ namespace PCG_Map.Chunk
         private void SetChilds()
         {
             Terrain.transform.SetParent(ChunkObj.transform);
-            /*foreach (var obj in Objects)
-                obj.transform.SetParent(ChunkObj.transform);*/
         }
 
         private void ApplySize()
@@ -56,7 +54,6 @@ namespace PCG_Map.Chunk
             for (int i = 0; i < HeightsMapReoslution; ++i)
                 for (int j = 0; j < HeightsMapReoslution; ++j)
                 {
-                    Debug.Log($"{Position.x} {Position.y} | {i} {j} {Heights[i, j]}");
                     height_map[i, j] = Heights[j, i]; // problem with terrain coordinates(swaped x and z)
                 }
             Terrain.terrainData.SetHeights(0, 0, height_map);
@@ -67,6 +64,7 @@ namespace PCG_Map.Chunk
             ChunkTextureData[] textures = TexturesData.GetChunkTexturesData();
             TerrainLayer[] terrain_layers = new TerrainLayer[textures.Length];
 
+            Terrain.terrainData.alphamapResolution = Size.x;
             float[,,] splatmap_data = new float[Size.x, Size.y, textures.Length];
             for (int texture_number = 0; texture_number < textures.Length; ++texture_number)
             {
@@ -79,7 +77,7 @@ namespace PCG_Map.Chunk
                 {
                     for (int y = 0; y < Size.y; ++y)
                     {
-                        float alpha_value = texture_alpha_matrix[x, y];
+                        float alpha_value = texture_alpha_matrix[y, x]; // problem with terrain coordinates(swaped x and z)
                         alpha_value = Mathf.Clamp01(alpha_value);
 
                         splatmap_data[x, y, texture_number] = alpha_value;
@@ -98,6 +96,7 @@ namespace PCG_Map.Chunk
                 Vector3 position = obj.transform.position;
                 position.y = Terrain.SampleHeight(position);
                 obj.transform.position = position;
+                obj.transform.SetParent(ChunkObj.transform);
             }
         }
     }
