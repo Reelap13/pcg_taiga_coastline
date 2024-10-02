@@ -11,6 +11,7 @@ namespace PCG_Map.Chunk
         public GameObject ChunkObj => _chunk.ChunkObj;
         public Terrain Terrain => _chunk.Terrain;
         public Matrix2D Heights => _chunk.Heights;
+        public ChunkTexturesData TexturesData => _chunk.TexturesData;
         public Vector2 Position => _chunk.Position;
         public Vector2Int Size => _chunk.Size;
         public int HeightsMapReoslution => _chunk.HeightsMapResolution;
@@ -26,16 +27,16 @@ namespace PCG_Map.Chunk
             SetChilds();
             ApplySize();
             ApplyPosition();
-            Debug.Log(Terrain.terrainData.size);
             ApplyHeights();
-            Debug.Log(Terrain.terrainData.size);
+            ApplyTextures();
+            ApplyObjects();
         }
 
         private void SetChilds()
         {
             Terrain.transform.SetParent(ChunkObj.transform);
-            foreach (var obj in Objects)
-                obj.transform.SetParent(ChunkObj.transform);
+            /*foreach (var obj in Objects)
+                obj.transform.SetParent(ChunkObj.transform);*/
         }
 
         private void ApplySize()
@@ -56,19 +57,48 @@ namespace PCG_Map.Chunk
                 for (int j = 0; j < HeightsMapReoslution; ++j)
                 {
                     Debug.Log($"{Position.x} {Position.y} | {i} {j} {Heights[i, j]}");
-                    height_map[i, j] = Heights[j, i];
+                    height_map[i, j] = Heights[j, i]; // problem with terrain coordinates(swaped x and z)
                 }
             Terrain.terrainData.SetHeights(0, 0, height_map);
         }
 
         private void ApplyTextures()
         {
+            ChunkTextureData[] textures = TexturesData.GetChunkTexturesData();
+            TerrainLayer[] terrain_layers = new TerrainLayer[textures.Length];
 
+            float[,,] splatmap_data = new float[Size.x, Size.y, textures.Length];
+            for (int texture_number = 0; texture_number < textures.Length; ++texture_number)
+            {
+                terrain_layers[texture_number] = new TerrainLayer();
+                terrain_layers[texture_number].diffuseTexture = textures[texture_number].Texture;
+                terrain_layers[texture_number].tileSize = new(2, 2); //can be changed
+
+                Matrix2D texture_alpha_matrix = textures[texture_number].Matrix;
+                for (int x = 0; x < Size.x; ++x)
+                {
+                    for (int y = 0; y < Size.y; ++y)
+                    {
+                        float alpha_value = texture_alpha_matrix[x, y];
+                        alpha_value = Mathf.Clamp01(alpha_value);
+
+                        splatmap_data[x, y, texture_number] = alpha_value;
+                    }
+                }
+            }
+
+            Terrain.terrainData.terrainLayers = terrain_layers;
+            Terrain.terrainData.SetAlphamaps(0, 0, splatmap_data);
         }
 
         private void ApplyObjects()
         {
-
+            foreach (GameObject obj in Objects)
+            {
+                Vector3 position = obj.transform.position;
+                position.y = Terrain.SampleHeight(position);
+                obj.transform.position = position;
+            }
         }
     }
 }

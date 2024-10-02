@@ -23,10 +23,10 @@ namespace PCG_Map.Heights
             Vector2 position = start_position;
             for (int i = 0; i < heights_map_resolution; ++i)
             {
-                position.x = start_position.x + size.x * (i + 1) / heights_map_resolution;
+                position.x = start_position.x + size.x * i / (heights_map_resolution - 1);
                 for (int j = 0; j < heights_map_resolution; ++j)
                 {
-                    position.y = start_position.y + size.y * (j + 1) / heights_map_resolution;
+                    position.y = start_position.y + size.y * j / (heights_map_resolution - 1);
                     heights[i, j] = GetHeight(position) / TerrainHeight;
                 }
             }
