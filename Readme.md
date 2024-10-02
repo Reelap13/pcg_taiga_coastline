@@ -143,7 +143,7 @@ I really enjoyed this project. I learned a lot about generation and Unity, and I
 
 ### Coastline
 
-![alt text](image.png)
+![alt text](imgaes/image.png)
 ![alt text](image-1.png)
 ![alt text](image-2.png)
 
