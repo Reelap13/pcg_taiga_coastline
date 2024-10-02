@@ -144,18 +144,18 @@ I really enjoyed this project. I learned a lot about generation and Unity, and I
 ### Coastline
 
 ![alt text](imgaes/image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
+![alt text](imgaes/image-1.png)
+![alt text](imgaes/image-2.png)
 
 ### Coastline after generation
 
-![alt text](image-3.png)
-![alt text](image-4.png)
+![alt text](imgaes/image-3.png)
+![alt text](imgaes/image-4.png)
 
 ### Taiga
 
-![alt text](image-5.png)
+![alt text](imgaes/image-5.png)
 
 ### Seabed
 
-![alt text](image-6.png)
+![alt text](imgaes/image-6.png)
