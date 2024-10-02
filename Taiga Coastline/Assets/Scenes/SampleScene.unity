@@ -1165,7 +1165,7 @@ MonoBehaviour:
   _x_boarders: {x: -1000, y: 1000}
   _y_start: 0
   _decimal_cach_places: 4
-  _is_displaying_coastline_by_line: 0
+  _is_displaying_coastline_by_line: 1
   _coastline_seed_coefficient: 123
 --- !u!114 &674796437
 MonoBehaviour:
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   _chunk_manager: {fileID: 503773061}
   HeightsAgent: {fileID: 674796437}
   TexturesAgent: {fileID: 2080877790}
-  Seed: 121222
+  Seed: 3442
 --- !u!1 &1003802235
 GameObject:
   m_ObjectHideFlags: 0

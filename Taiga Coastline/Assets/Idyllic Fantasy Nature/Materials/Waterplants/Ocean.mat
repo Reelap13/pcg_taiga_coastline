@@ -179,7 +179,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _Tiling: 0.5
-    - _Water_Speed: 0.1
+    - _Water_Speed: 0.18
     - _WaveSpeed: 0.5
     - _Wave_Amplitude: 0.03
     - _Wave_Frequency: 0
