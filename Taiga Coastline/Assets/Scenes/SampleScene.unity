@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f8c2b016d4eed40b41883a7bbc6570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _area_interval: {x: 16, y: 120}
+  _area_interval: {x: 16, y: 300}
 --- !u!114 &92180095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,6 +769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 503773058}
   - component: {fileID: 503773061}
+  - component: {fileID: 503773062}
   m_Layer: 0
   m_Name: ChunksManager
   m_TagString: Untagged
@@ -804,9 +805,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0eca4bb2569974c912ad35523a4b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChunkSize>k__BackingField: 32
+  <ChunkSize>k__BackingField: 16
   _chunks_factory: {fileID: 1339447818}
-  radius: 2
+  _player_tracker: {fileID: 503773062}
+  radius: 4
+  _radius_number_to_disactivate: 3
+--- !u!114 &503773062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503773057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf45f4878e44cc4bb6a3c4b9eb34605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMovingToOtherChunk:
+    m_PersistentCalls:
+      m_Calls: []
+  <ChunkManager>k__BackingField: {fileID: 503773061}
+  _target: {fileID: 330585546}
 --- !u!1 &559758244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,11 +1160,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iteration_number: 12
-  _height_offset: 50
+  _height_offset: 500
   _roughness: 0.5
-  _x_boarders: {x: -100, y: 100}
+  _x_boarders: {x: -1000, y: 1000}
   _y_start: 0
   _decimal_cach_places: 4
+  _is_displaying_coastline_by_line: 0
   _coastline_seed_coefficient: 123
 --- !u!114 &674796437
 MonoBehaviour:

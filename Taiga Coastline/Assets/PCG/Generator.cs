@@ -22,10 +22,11 @@ namespace PCG_Map
 
         private IEnumerator GenerateMainAgent()
         {
+            yield return null;
             HeightsAgent.Initialize();
             TexturesAgent.Initialize();
             yield return null;
-            _chunk_manager.CreateChunks();
+            _chunk_manager.Initialize();
         }
     }
 }

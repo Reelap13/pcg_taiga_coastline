@@ -37,8 +37,6 @@ namespace PCG_Map.Chunk
 
         private Matrix2D CalculateHeights(Vector2 position)
         {
-            Matrix2D map = new(HeightsMapResolution);
-            map.FillWithPerlinNoise(100);
             return _heights_agent.GetHeights(position, Size, HeightsMapResolution);
         }
 

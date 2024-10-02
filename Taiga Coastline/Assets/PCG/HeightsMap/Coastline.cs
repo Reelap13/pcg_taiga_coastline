@@ -15,6 +15,8 @@ namespace PCG_Map.Heights
 
         [SerializeField] private int _decimal_cach_places = 4;
 
+        [SerializeField] private bool _is_displaying_coastline_by_line = true;
+
         [SerializeField] private int _coastline_seed_coefficient = 123;
 
         private Vector2[] _points;
@@ -23,7 +25,8 @@ namespace PCG_Map.Heights
         public void Initialize()
         {
             GenerateCoastline();
-            DrawLine();
+            if (_is_displaying_coastline_by_line)
+                DrawLine();
         }
 
         private void GenerateCoastline()

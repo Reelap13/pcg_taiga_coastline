@@ -15,7 +15,7 @@ namespace PCG_Map.Chunk
         [SerializeField] private ChunksLoader _chunks_loader;
 
         public Vector2Int Size => new(ChunksManager.ChunkSize, ChunksManager.ChunkSize);
-        public int HeightsMapResolution => ChunksManager.ChunkSize * 1  + 1;
+        public int HeightsMapResolution => ChunksManager.ChunkSize * 2  + 1;
 
         public Chunk CreateChunk(Vector2 position)
         {
