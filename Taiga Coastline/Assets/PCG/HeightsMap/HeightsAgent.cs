@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PCG_Map.Heights
 {
-    public class HeightsAgent : MonoBehaviour
+    public class HeightsAgent : Singleton<HeightsAgent>
     {
         [SerializeField] private Coastline _coastline;
         [SerializeField] private LandHeights _land_heights;

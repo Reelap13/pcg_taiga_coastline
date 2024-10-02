@@ -525,6 +525,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 610394911}
+  - component: {fileID: 610394915}
+  - component: {fileID: 610394914}
+  - component: {fileID: 610394913}
   - component: {fileID: 610394912}
   m_Layer: 0
   m_Name: TestBiom
@@ -557,13 +560,54 @@ MonoBehaviour:
   m_GameObject: {fileID: 610394910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4681aeeee4907141bb7d7bda4eb52ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 66f8c2b016d4eed40b41883a7bbc6570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 3
-  _test_texture: {fileID: 2800000, guid: 8fbd25f7f3ad1784f9e12b128445fdb2, type: 3}
+  _area_interval: {x: -1000, y: 1000}
+--- !u!114 &610394913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610394910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961ac16c31debc345b9ae6c0d222c982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _test_biom_object: {fileID: 2848545874893195041, guid: cf111bb38cac4ad439a2b9ac53052bde,
     type: 3}
+  _probability: 0.05
+--- !u!114 &610394914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610394910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d219ab15998d73f449d88821462b826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _texture: {fileID: 2800000, guid: 8fbd25f7f3ad1784f9e12b128445fdb2, type: 3}
+--- !u!114 &610394915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610394910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8778d11f7cd6a6e4abddf814d8f2aa96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0
+  _textures_controller: {fileID: 610394914}
+  _area_controller: {fileID: 610394912}
+  _objects_controller: {fileID: 610394913}
 --- !u!1 &674796434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bioms:
-  - {fileID: 610394912}
+  - {fileID: 610394915}
 --- !u!1 &2139570845
 GameObject:
   m_ObjectHideFlags: 0
