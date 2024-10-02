@@ -13,7 +13,7 @@ namespace PCG_Map.Bioms
         [SerializeField] public BiomType _type;
         [SerializeField] private BiomTexturesController _textures_controller;
         [SerializeField] private BiomAreaController _area_controller;
-        [SerializeField] private BiomObjectsController _objects_controller;
+        [SerializeField] private BiomObjectsController[] _objects_controller;
 
         public bool IsInBiom(Vector2 position) => _area_controller.IsInBiom(position);
 
@@ -22,7 +22,11 @@ namespace PCG_Map.Bioms
 
         public List<ObjectData> GetObjectsPrefabs(Vector2 position)
         {
-            return _objects_controller.GetObjectsPrefabs(position);
+            List<ObjectData> objects = new List<ObjectData>();
+            foreach (var obj in _objects_controller)
+                objects.AddRange(obj.GetObjectsPrefabs(position));
+
+            return objects;
         }
 
         public BiomType Type { get { return _type; } }

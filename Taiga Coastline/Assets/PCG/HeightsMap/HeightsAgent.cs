@@ -11,11 +11,11 @@ namespace PCG_Map.Heights
         [SerializeField] private SeaHeights _sea_heights;
 
         [field: SerializeField]
-        public float TerrainHeight = 600;
+        public float TerrainHeight { get; private set; } = 600;
         [field: SerializeField]
-        public float SeaHeight = 50;
+        public float SeaHeight { get; private set; } = 50;
         [field: SerializeField]
-        public float MinHeight = 1;
+        public float MinHeight { get; private set; } = 1;
 
         public Matrix2D GetHeights(Vector2 start_position, Vector2Int size, int heights_map_resolution)
         {

@@ -94,7 +94,9 @@ namespace PCG_Map.Chunk
             foreach (GameObject obj in Objects)
             {
                 Vector3 position = obj.transform.position;
-                position.y = Terrain.SampleHeight(position);
+                if (obj.transform.position.y == 0)
+                    position.y = Terrain.SampleHeight(position);
+
                 obj.transform.position = position;
                 obj.transform.SetParent(ChunkObj.transform);
             }

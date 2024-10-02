@@ -10,6 +10,9 @@ namespace PCG_Map.Objects
         private Vector3 _position;
         private Quaternion _rotation;
 
+
+        public ObjectData(GameObject prefab) : this(prefab, Vector2.zero, Quaternion.identity) { }
+        public ObjectData(GameObject prefab, Vector3 position) : this(prefab, position, Quaternion.identity) { }
         public ObjectData(GameObject prefab, Vector3 position, Quaternion rotation)
         {
             _prefab = prefab;
