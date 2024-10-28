@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 namespace PCG_Map.Chunk
@@ -10,7 +11,7 @@ namespace PCG_Map.Chunk
 
         public GameObject ChunkObj => _chunk.ChunkObj;
         public Terrain Terrain => _chunk.Terrain;
-        public Matrix2D Heights => _chunk.Heights;
+        public NativeArray<float> Heights => _chunk.Heights;
         public ChunkTexturesData TexturesData => _chunk.TexturesData;
         public Vector2 Position => _chunk.Position;
         public Vector2Int Size => _chunk.Size;
@@ -28,8 +29,8 @@ namespace PCG_Map.Chunk
             ApplySize();
             ApplyPosition();
             ApplyHeights();
-            ApplyTextures();
-            ApplyObjects();
+            //ApplyTextures();
+            //ApplyObjects();
         }
 
         private void SetChilds()
@@ -54,9 +55,11 @@ namespace PCG_Map.Chunk
             for (int i = 0; i < HeightsMapReoslution; ++i)
                 for (int j = 0; j < HeightsMapReoslution; ++j)
                 {
-                    height_map[i, j] = Heights[j, i]; // problem with terrain coordinates(swaped x and z)
+                    height_map[i, j] = Heights[j * HeightsMapReoslution + i]; // problem with terrain coordinates(swaped x and z)
                 }
             Terrain.terrainData.SetHeights(0, 0, height_map);
+
+            Heights.Dispose();
         }
 
         private void ApplyTextures()
