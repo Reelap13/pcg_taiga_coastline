@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PCG_Map.Algorithms
 {
-    public enum HeightsMapAlgorithmType
+    public enum HeightMapAlgorithmType
     {
         PERLIN_NOISE = AlgorithmType.PERLIN_NOISE,
         LINEAR = AlgorithmType.LINEAR

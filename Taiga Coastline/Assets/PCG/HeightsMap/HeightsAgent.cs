@@ -45,7 +45,7 @@ namespace PCG_Map.Heights
             };
         }
 
-        public void RegisterBiomTemplate(int biom_template_id, HeightsMapAlgorithmType type, IHeightsMapAlgorithm algorithm)
+        public void RegisterBiomTemplate(int biom_template_id, HeightMapAlgorithmType type, IHeightsMapAlgorithm algorithm)
         {
             _algorithms.AddAlgorithm(biom_template_id, type, algorithm);
         }
@@ -56,7 +56,7 @@ namespace PCG_Map.Heights
         }
 
 
-        public FindHeights GetHeights(float2 start_position, int size, float step, NativeArray<int> bioms_id, NativeArray<float> heights)
+        public FindHeights GetHeightMap(float2 start_position, int size, float step, NativeArray<int> bioms_id, NativeArray<float> heights)
         {
             var job = new FindHeights
             {
@@ -122,7 +122,7 @@ namespace PCG_Map.Heights
         [ReadOnly] public float Step;
         [ReadOnly] public HeightsmapAlgorithmsData Algorithms;
         [ReadOnly] public NativeArray<int> BiomsId;
-        public NativeArray<float> Heights;
+        [WriteOnly] public NativeArray<float> Heights;
 
         public void Execute(int index)
         {

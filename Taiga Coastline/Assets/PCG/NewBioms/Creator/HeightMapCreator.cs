@@ -8,9 +8,9 @@ using UnityEngine;
 
 namespace PCG_Map.New_Bioms.Creator
 {
-    public class HeightsMapCreator : MonoBehaviour
+    public class HeightMapCreator : MonoBehaviour
     {
-        public HeightsMapAlgorithmType Type;
+        public HeightMapAlgorithmType Type;
 
         public PerlinNoiseAlgorithmCreatorData PerlinNoiseData;
         public LinearFunctionCreatorData LinearData;
@@ -20,10 +20,10 @@ namespace PCG_Map.New_Bioms.Creator
             IHeightsMapAlgorithm algorithm = null;
             switch (Type)
             {
-                case HeightsMapAlgorithmType.PERLIN_NOISE:
+                case HeightMapAlgorithmType.PERLIN_NOISE:
                     algorithm = new PerlinNoiseAlgorithm() { Data = new(PerlinNoiseData) };
                     break;
-                case HeightsMapAlgorithmType.LINEAR:
+                case HeightMapAlgorithmType.LINEAR:
                     algorithm = new LinearFunction() { Data = new(LinearData) };
                     break;
             }
@@ -32,25 +32,25 @@ namespace PCG_Map.New_Bioms.Creator
         }
     }
 
-    [CustomEditor(typeof(HeightsMapCreator))]
+    [CustomEditor(typeof(HeightMapCreator))]
     public class HeightsMapCreatorEditor : Editor
     {
         public override void OnInspectorGUI()
         {
-            HeightsMapCreator creator = (HeightsMapCreator)target;
+            HeightMapCreator creator = (HeightMapCreator)target;
 
-            creator.Type = (HeightsMapAlgorithmType)EditorGUILayout.EnumPopup("Selected Algorithm", creator.Type);
+            creator.Type = (HeightMapAlgorithmType)EditorGUILayout.EnumPopup("Selected Algorithm", creator.Type);
 
             switch (creator.Type)
             {
-                case HeightsMapAlgorithmType.PERLIN_NOISE:
+                case HeightMapAlgorithmType.PERLIN_NOISE:
                     EditorGUILayout.LabelField("Voronoi Algorithm Settings");
                     creator.PerlinNoiseData.BaseValue = EditorGUILayout.FloatField("Base Value", creator.PerlinNoiseData.BaseValue);
                     creator.PerlinNoiseData.Smoothness = EditorGUILayout.FloatField("Smoothness Value", creator.PerlinNoiseData.Smoothness);
                     creator.PerlinNoiseData.Amplitude = EditorGUILayout.FloatField("Amplitude Value", creator.PerlinNoiseData.Amplitude);
                     creator.PerlinNoiseData.Borders = EditorGUILayout.Vector2Field("Borders Value", creator.PerlinNoiseData.Borders);
                     break;
-                case HeightsMapAlgorithmType.LINEAR:
+                case HeightMapAlgorithmType.LINEAR:
                     EditorGUILayout.LabelField("Linear Function Settings");
                     creator.LinearData.BaseValue = EditorGUILayout.FloatField("Base Value", creator.LinearData.BaseValue);
                     creator.LinearData.Coefficients = EditorGUILayout.Vector2Field("Coefficients Value", creator.LinearData.Coefficients);

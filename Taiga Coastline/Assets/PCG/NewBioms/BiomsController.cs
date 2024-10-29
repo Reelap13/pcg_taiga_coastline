@@ -2,6 +2,7 @@ using PCG_Map.Algorithms;
 using PCG_Map.Algorithms.Voronoi;
 using PCG_Map.Heights;
 using PCG_Map.New_Bioms.Creator;
+using PCG_Map.Textures;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst;
@@ -40,9 +41,12 @@ namespace PCG_Map.New_Bioms
                 BiomTemplate template = bioms_creators[i].GetBiomTemplate();
                 template.ID = i;
                 _bioms_templates[i] = template;
+
                 HeightsAgent.Instance.RegisterBiomTemplate(i, 
                     _bioms_templates[i].HeightsMapAlgorithmType,
                     bioms_creators[i].GetHeightsMapAlgorithm());
+                TexturesAgent.Instance.RegisterBiomTemplate(i, 
+                    _bioms_templates[i].TextureID);
             }
         }
 

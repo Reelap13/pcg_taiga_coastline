@@ -1,14 +1,18 @@
 using PCG_Map.Bioms;
 using PCG_Map.Chunk;
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace PCG_Map.Textures
 {
-    public class TexturesAgent : MonoBehaviour
+    public class TexturesAgent : Singleton<TexturesAgent>
     {
         [SerializeField] private TexturesSet _textures_set;
+
+        private TextureMapAlgorithmData _algorithm_data;
 
         public void SetTextures(Vector2 start_position, Vector2Int size, ChunkTexturesData textures_data)
         {
@@ -27,10 +31,56 @@ namespace PCG_Map.Textures
                 }
             }
         }
+        public FindTextureMap GetTextureMap(float2 start_position, int size, float step, 
+            NativeArray<int> bioms_id, NativeArray<int> texture_map, NativeParallelHashSet<int> textures)
+        {
+            var job = new FindTextureMap
+            {
+                StartPosition = start_position,
+                Size = size,
+                Step = step,
+                AlgorithmData = _algorithm_data,
+                BiomsId = bioms_id,
+                TextureMap = texture_map,
+                Textures = textures.AsParallelWriter()
+            };
+
+            return job;
+        }
+
+        public void RegisterBiomTemplate(int biom_template_id, int texture_id)
+        {
+            _algorithm_data.AddBiomTemplateTexture(biom_template_id, texture_id);
+        }
 
         public void Initialize()
         {
             _textures_set.Initialize();
+
+            NativeHashMap<int, int> bioms_textures = new NativeHashMap<int, int>(10, Allocator.Persistent);//10 magic number of bioms count
+            _algorithm_data = new TextureMapAlgorithmData()
+            {
+                BiomsTextures = bioms_textures,
+            };
+        }
+    }
+
+    [BurstCompile]
+    public struct FindTextureMap : IJobParallelFor
+    {
+        [ReadOnly] public float2 StartPosition;
+        [ReadOnly] public int Size;
+        [ReadOnly] public float Step;
+        [ReadOnly] public TextureMapAlgorithmData AlgorithmData;
+        [ReadOnly] public NativeArray<int> BiomsId;
+        [WriteOnly] public NativeArray<int> TextureMap;
+        [WriteOnly] public NativeParallelHashSet<int>.ParallelWriter Textures;
+
+        public void Execute(int index)
+        {
+            int value = AlgorithmData.GetTexture(BiomsId[index]);
+            TextureMap[index] = value;
+            Textures.Add(value);
         }
     }
 }

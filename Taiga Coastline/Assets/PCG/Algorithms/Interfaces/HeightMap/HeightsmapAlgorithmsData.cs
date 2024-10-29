@@ -16,19 +16,19 @@ namespace PCG_Map.Algorithms
         public NativeList<PerlinNoiseAlgorithm> PerlinNoiseAlgorithms;
         public NativeList<LinearFunction> LinearFunctions;
         
-        public void AddAlgorithm(int biom_template_id, HeightsMapAlgorithmType type, IHeightsMapAlgorithm algorithm)
+        public void AddAlgorithm(int biom_template_id, HeightMapAlgorithmType type, IHeightsMapAlgorithm algorithm)
         {
             switch (type)
             {
-                case HeightsMapAlgorithmType.PERLIN_NOISE:
+                case HeightMapAlgorithmType.PERLIN_NOISE:
                     PerlinNoiseAlgorithms.Add((PerlinNoiseAlgorithm)algorithm);
                     AlgorithmsData.Add(biom_template_id, 
-                        new HeightsMapAlgorithmData(HeightsMapAlgorithmType.PERLIN_NOISE, PerlinNoiseAlgorithms.Length - 1));
+                        new HeightsMapAlgorithmData(HeightMapAlgorithmType.PERLIN_NOISE, PerlinNoiseAlgorithms.Length - 1));
                     break;
-                case HeightsMapAlgorithmType.LINEAR:
+                case HeightMapAlgorithmType.LINEAR:
                     LinearFunctions.Add((LinearFunction)algorithm);
                     AlgorithmsData.Add(biom_template_id,
-                        new HeightsMapAlgorithmData(HeightsMapAlgorithmType.LINEAR, LinearFunctions.Length - 1));
+                        new HeightsMapAlgorithmData(HeightMapAlgorithmType.LINEAR, LinearFunctions.Length - 1));
                     break;
             }
         }
@@ -39,9 +39,9 @@ namespace PCG_Map.Algorithms
 
             switch (data.Type)
             {
-                case HeightsMapAlgorithmType.PERLIN_NOISE:
+                case HeightMapAlgorithmType.PERLIN_NOISE:
                     return PerlinNoiseAlgorithms[data.ID].CalculateHeight(position);
-                case HeightsMapAlgorithmType.LINEAR:
+                case HeightMapAlgorithmType.LINEAR:
                     return LinearFunctions[data.ID].CalculateHeight(position);
             }
 
@@ -60,10 +60,10 @@ namespace PCG_Map.Algorithms
     [System.Serializable]
     public struct HeightsMapAlgorithmData
     {
-        public HeightsMapAlgorithmType Type;
+        public HeightMapAlgorithmType Type;
         public int ID;
 
-        public HeightsMapAlgorithmData(HeightsMapAlgorithmType type, int ID)
+        public HeightsMapAlgorithmData(HeightMapAlgorithmType type, int ID)
         {
             this.Type = type;
             this.ID = ID;

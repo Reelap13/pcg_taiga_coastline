@@ -21,6 +21,7 @@ namespace PCG_Map
         private void Start()
         {
             HeightsAgent.Initialize();
+            TexturesAgent.Initialize();
             Bioms.Initialize();
             _chunk_manager.Initialize();
             //_chunk_manager.Initialize();

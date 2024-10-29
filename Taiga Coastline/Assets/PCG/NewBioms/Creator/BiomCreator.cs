@@ -9,17 +9,19 @@ namespace PCG_Map.New_Bioms.Creator
     public class BiomCreator : MonoBehaviour
     {
         [SerializeField] private BiomType _biom_type;
-        [SerializeField] private HeightsMapCreator _heights_map;
+        [SerializeField] private HeightMapCreator _height_map;
+        [SerializeField] private TextureMapCreator _texture_map;
 
         public BiomTemplate GetBiomTemplate()
         {
             return new BiomTemplate()
             {
                 Type = _biom_type,
-                HeightsMapAlgorithmType = _heights_map.Type
+                HeightsMapAlgorithmType = _height_map.Type,
+                TextureID = _texture_map.GetTextureID()
             };
         }
 
-        public IHeightsMapAlgorithm GetHeightsMapAlgorithm() { return _heights_map.GetHeightsMapAlgorithm(); }
+        public IHeightsMapAlgorithm GetHeightsMapAlgorithm() { return _height_map.GetHeightsMapAlgorithm(); }
     }
 }

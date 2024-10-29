@@ -185,6 +185,7 @@ Transform:
   m_Children:
   - {fileID: 821232460}
   - {fileID: 1876848749}
+  - {fileID: 477853413}
   m_Father: {fileID: 2106083960}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
@@ -488,6 +489,91 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &477853412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 477853413}
+  - component: {fileID: 477853416}
+  - component: {fileID: 477853415}
+  - component: {fileID: 477853414}
+  m_Layer: 0
+  m_Name: Forest (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &477853413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477853412}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 300819147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &477853414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477853412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1202796d01dbea149abcf4853c8fa0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Texture: {fileID: 2800000, guid: 93c35c655eda82e4ab8d37117b49e15c, type: 3}
+--- !u!114 &477853415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477853412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70837669b839e9f4c84caa57b8b9c8e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  PerlinNoiseData:
+    BaseValue: 70
+    Smoothness: 600
+    Amplitude: 20
+    Borders: {x: 0, y: 600}
+  LinearData:
+    BaseValue: 50
+    Coefficients: {x: 1, y: 0}
+    Offsets: {x: 50, y: 0}
+    Borders: {x: 0, y: 600}
+--- !u!114 &477853416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477853412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb095e212e324994dab3f8b43b358844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _biom_type: 1
+  _height_map: {fileID: 477853415}
+  _texture_map: {fileID: 477853414}
 --- !u!1 &503773057
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chunk_manager: {fileID: 503773061}
   HeightsAgent: {fileID: 1413145849}
-  TexturesAgent: {fileID: 0}
+  TexturesAgent: {fileID: 1311042768}
   Bioms: {fileID: 2106083961}
   Seed: 235462452
 --- !u!4 &714755974
@@ -606,6 +692,7 @@ Transform:
   m_Children:
   - {fileID: 2106083960}
   - {fileID: 1413145850}
+  - {fileID: 1311042770}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &740280837
@@ -679,13 +766,14 @@ GameObject:
   - component: {fileID: 821232460}
   - component: {fileID: 821232462}
   - component: {fileID: 821232461}
+  - component: {fileID: 821232463}
   m_Layer: 0
   m_Name: Sea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &821232460
 Transform:
   m_ObjectHideFlags: 0
@@ -737,7 +825,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _biom_type: 0
-  _heights_map: {fileID: 821232461}
+  _height_map: {fileID: 821232461}
+  _texture_map: {fileID: 821232463}
+--- !u!114 &821232463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821232459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1202796d01dbea149abcf4853c8fa0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Texture: {fileID: 2800000, guid: c34ec4ea33f41784dada5802e39a8165, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +888,68 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1311042767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1311042770}
+  - component: {fileID: 1311042768}
+  - component: {fileID: 1311042769}
+  m_Layer: 0
+  m_Name: TexturesAgent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1311042768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311042767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901fd2a9af635e3429d0693bcf5a9a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textures_set: {fileID: 1311042769}
+--- !u!114 &1311042769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311042767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3eddb3ccb7e36a4d94a8e85cb0b97df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textures:
+  - {fileID: 2800000, guid: 93c35c655eda82e4ab8d37117b49e15c, type: 3}
+  - {fileID: 2800000, guid: 4900b2b933f056247806df532f93e2b9, type: 3}
+  - {fileID: 2800000, guid: c34ec4ea33f41784dada5802e39a8165, type: 3}
+--- !u!4 &1311042770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311042767}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 714755974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1339447816
 GameObject:
@@ -839,6 +1003,7 @@ MonoBehaviour:
   _chunks_loader: {fileID: 2139570847}
   _chunks_applier: {fileID: 740280838}
   _height_map_coefficient: 2
+  _chunk_allying_per_frame: 4
 --- !u!1 &1340575094
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +1112,7 @@ GameObject:
   - component: {fileID: 1876848749}
   - component: {fileID: 1876848751}
   - component: {fileID: 1876848750}
+  - component: {fileID: 1876848752}
   m_Layer: 0
   m_Name: Forest
   m_TagString: Untagged
@@ -1005,7 +1171,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _biom_type: 1
-  _heights_map: {fileID: 1876848750}
+  _height_map: {fileID: 1876848750}
+  _texture_map: {fileID: 1876848752}
+--- !u!114 &1876848752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876848748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1202796d01dbea149abcf4853c8fa0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Texture: {fileID: 2800000, guid: 4900b2b933f056247806df532f93e2b9, type: 3}
 --- !u!1 &2106083959
 GameObject:
   m_ObjectHideFlags: 0

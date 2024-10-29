@@ -10,6 +10,7 @@ namespace PCG_Map.New_Bioms
         public int ID;
         public BiomType Type;
 
-        public HeightsMapAlgorithmType HeightsMapAlgorithmType;
+        public HeightMapAlgorithmType HeightsMapAlgorithmType;
+        public int TextureID;
     }
 }
