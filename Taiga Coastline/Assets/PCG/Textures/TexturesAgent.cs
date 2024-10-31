@@ -1,4 +1,3 @@
-using PCG_Map.Bioms;
 using PCG_Map.Chunk;
 using PCG_Map.New_Bioms;
 using Unity.Burst;
@@ -15,10 +14,6 @@ namespace PCG_Map.Textures
 
         private BiomsController BiomsController => Generator.Instance.Bioms;
 
-        public void SetTextures(Vector2 start_position, Vector2Int size, ChunkTexturesData textures_data)
-        {
-
-        }
         public FindTextureMap GetTextureMap(float2 start_position, int size, float step, 
             NativeArray<int> bioms_id, NativeArray<int> texture_map, NativeParallelHashSet<int> textures)
         {

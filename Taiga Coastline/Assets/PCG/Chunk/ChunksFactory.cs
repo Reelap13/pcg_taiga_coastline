@@ -70,24 +70,10 @@ namespace PCG_Map.Chunk
         {
             NewChunk chunk = GenerateChunk(position);
             _generating_chunks.Add(chunk);
-            /*Chunk chunk;
-            if (CheckToLoaded(position))
-                chunk = LoadChunk(position);
-            else chunk = GenerateChunk(position);
-
-            ApplyChunk(chunk);
-
-            return chunk;*/
-        }
-
-        private void ApplyChunk(Chunk chunk)
-        {
-            ChunkApplier applier = new(chunk);
-            applier.Apply();
         }
 
         private NewChunk GenerateChunk(Vector2 position) => _chunks_generator.GenerateChunk(position);
-        private Chunk LoadChunk(Vector2 position) => _chunks_loader.LoadChunk(position);
+        private NewChunk LoadChunk(Vector2 position) => _chunks_loader.LoadChunk(position);
         private bool CheckToLoaded(Vector2 position) => _chunks_loader.CheckToLoaded(position);
     }
 }
