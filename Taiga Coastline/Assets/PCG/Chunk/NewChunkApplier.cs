@@ -107,9 +107,9 @@ namespace PCG_Map.Chunk
                 GameObject[] obj_prefabs = ObjectsSet.Instance.GetPrefabs(obj_data.PrefabID);
                 GameObject obj = Instantiate(obj_prefabs[random.NextInt(0, obj_prefabs.Length)]) as GameObject;
 
-                obj.transform.SetParent(chunk_obj.transform);
+                obj.transform.SetParent(chunk_obj.transform, false);
 
-                Vector3 position = new Vector3(obj_data.Position.y, obj_data.Height, obj_data.Position.x);
+                Vector3 position = new Vector3(obj_data.Position.x, obj_data.Height, obj_data.Position.y);
                 if (position.y == -1)
                     position.y = terrain.SampleHeight(position);
                 obj.transform.position = position;
