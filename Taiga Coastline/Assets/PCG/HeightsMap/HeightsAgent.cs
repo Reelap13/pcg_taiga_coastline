@@ -33,8 +33,7 @@ namespace PCG_Map.Heights
 
         public void Initialize()
         {
-            // Change 10 const to number of bioms templates in the future!!!
-            NativeHashMap<int, HeightsMapAlgorithmData> data = new NativeHashMap<int, HeightsMapAlgorithmData>(10, Allocator.Persistent);
+            NativeHashMap<int, HeightsMapAlgorithmData> data = new NativeHashMap<int, HeightsMapAlgorithmData>(BiomsController.BiomsTemplatesNumber, Allocator.Persistent);
             NativeList<PerlinNoiseAlgorithm> perlin_noise_algorithms = new NativeList<PerlinNoiseAlgorithm>(Allocator.Persistent);
             NativeList<LinearFunction> linear_functions = new NativeList<LinearFunction>(Allocator.Persistent);
 

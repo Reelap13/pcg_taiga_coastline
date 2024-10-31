@@ -7,7 +7,7 @@ namespace PCG_Map.Bioms.Objects
 {
     public abstract class BiomObjectsController : MonoBehaviour
     {
-        public abstract List<ObjectData> GetObjectsPrefabs(Vector2 position);
+        public abstract List<OldObjectData> GetObjectsPrefabs(Vector2 position);
 
         protected Vector3 GetRandomPosition(Vector2 position)
         {

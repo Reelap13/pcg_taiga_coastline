@@ -1,3 +1,4 @@
+using PCG_Map.Objects;
 using PCG_Map.Textures;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace PCG_Map.Chunk
             ApplyPosition(chunk_obj, chunk);
             ApplyHeightMap(chunk, terrain);
             ApplyTextureMap(chunk, terrain);
+            CreateObjects(chunk, chunk_obj, terrain);
 
             ChunkData data = new ChunkData()
             {
@@ -94,6 +96,29 @@ namespace PCG_Map.Chunk
 
             terrain.terrainData.terrainLayers = terrain_layers;
             terrain.terrainData.SetAlphamaps(0, 0, splatmap_data);
+        }
+
+        private void CreateObjects(NewChunk chunk, GameObject chunk_obj, Terrain terrain)
+        {
+            var random = new Unity.Mathematics.Random((uint)Generator.Instance.Seed + (uint)(chunk.Position.x * chunk.Size) + (uint)(chunk.Position.y * 2));
+
+            foreach (ObjectData obj_data in chunk.Objects)
+            {
+                GameObject[] obj_prefabs = ObjectsSet.Instance.GetPrefabs(obj_data.PrefabID);
+                GameObject obj = Instantiate(obj_prefabs[random.NextInt(0, obj_prefabs.Length)]) as GameObject;
+
+                obj.transform.SetParent(chunk_obj.transform);
+
+                Vector3 position = new Vector3(obj_data.Position.y, obj_data.Height, obj_data.Position.x);
+                if (position.y == -1)
+                    position.y = terrain.SampleHeight(position);
+                obj.transform.position = position;
+
+                Vector3 rotation = obj.transform.eulerAngles;
+                rotation.y = obj_data.Rotation;
+                obj.transform.rotation = Quaternion.Euler(rotation);
+            }
+            Debug.Log($"Hi, {chunk.Objects.Length} objects was generated!");
         }
     }
 }

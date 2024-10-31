@@ -12,9 +12,9 @@ namespace PCG_Map.Bioms.Objects
         [SerializeField] private BiomObjectData[] _objects_prefabs;
         [SerializeField] private float _min_distance_from_boarders;
 
-        public override List<ObjectData> GetObjectsPrefabs(Vector2 position)
+        public override List<OldObjectData> GetObjectsPrefabs(Vector2 position)
         {
-            List<ObjectData> objects = new();
+            List<OldObjectData> objects = new();
 
             Random.InitState((int)(Generator.Instance.Seed + position.x * 122 + position.y * 145 + Mathf.Pow(position.x + 1, 2) + Mathf.Pow(position.y + 1, 3)));
             float coefficient = GetDistanceCoefficient(position);            

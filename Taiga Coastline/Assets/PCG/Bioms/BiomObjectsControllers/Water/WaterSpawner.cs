@@ -9,10 +9,10 @@ namespace PCG_Map.Bioms.Objects
     public class WaterSpawner : BiomObjectsController
     {
         [SerializeField] private GameObject _water_prefab;
-        public override List<ObjectData> GetObjectsPrefabs(Vector2 position)
+        public override List<OldObjectData> GetObjectsPrefabs(Vector2 position)
         {
             Vector3 pos = new Vector3(position.x + 0.5f, HeightsAgent.Instance.SeaHeight, position.y + 0.5f);
-            return new List<ObjectData>() { new ObjectData(_water_prefab, pos) }; 
+            return new List<OldObjectData>() { new OldObjectData(_water_prefab, pos) }; 
         }
     }
 }

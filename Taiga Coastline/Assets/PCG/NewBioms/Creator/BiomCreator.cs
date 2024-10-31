@@ -11,6 +11,7 @@ namespace PCG_Map.New_Bioms.Creator
         [SerializeField] private BiomType _biom_type;
         [SerializeField] private HeightMapCreator _height_map;
         [SerializeField] private TextureMapCreator _texture_map;
+        [SerializeField] private ObjectsCreator _objects;
 
         public BiomTemplate GetBiomTemplate()
         {
@@ -18,7 +19,8 @@ namespace PCG_Map.New_Bioms.Creator
             {
                 Type = _biom_type,
                 HeightsMapAlgorithmType = _height_map.Type,
-                TextureID = _texture_map.GetTextureID()
+                TextureID = _texture_map.GetTextureID(),
+                Objects = _objects.GetObjectsData()
             };
         }
 

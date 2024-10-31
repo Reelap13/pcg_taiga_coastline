@@ -2,6 +2,7 @@ using PCG_Map.Algorithms;
 using PCG_Map.Algorithms.Voronoi;
 using PCG_Map.Heights;
 using PCG_Map.New_Bioms.Creator;
+using PCG_Map.Objects;
 using PCG_Map.Textures;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,9 +21,12 @@ namespace PCG_Map.New_Bioms
         [SerializeField] private Vector4 _borders = new Vector4(-1000, -1000, 1000, 1000);
         [SerializeField] private float _seed;
 
-        private NativeArray<BiomTemplate> _bioms_templates;
+        private BiomCreator[] _bioms_creators;
+        private BiomTemplate[] _bioms_templates;
         private NativeArray<Biom> _bioms;
         private VoronoiAlgorithm _algorithm;
+
+        private int _bioms_templates_objects_number;
 
         public void Initialize()
         {
@@ -31,22 +35,35 @@ namespace PCG_Map.New_Bioms
             PreprocessingDataToVoronoiAlgorithm();
         }
 
+        public void RegisterBioms()
+        {
+
+            for (int i = 0; i < _bioms_templates.Length; ++i)
+            {
+                HeightsAgent.Instance.RegisterBiomTemplate(i,
+                    _bioms_templates[i].HeightsMapAlgorithmType,
+                    _bioms_creators[i].GetHeightsMapAlgorithm());
+                TexturesAgent.Instance.RegisterBiomTemplate(i,
+                    _bioms_templates[i].TextureID);
+                ObjectsAgent.Instance.RegisterBiomTemplate(i,
+                    _bioms_templates[i].Objects);
+            }
+        }
+
         private void LoadBiomsTemplates()
         {
-            BiomCreator[] bioms_creators = GetComponentsInChildren<BiomCreator>();
-            _bioms_templates = new NativeArray<BiomTemplate>(bioms_creators.Length, Allocator.Persistent);
+            _bioms_creators = GetComponentsInChildren<BiomCreator>();
+            _bioms_templates = new BiomTemplate[_bioms_creators.Length];
 
-            for (int i = 0; i < bioms_creators.Length; ++i)
+            _bioms_templates_objects_number = 0;
+
+            for (int i = 0; i < _bioms_creators.Length; ++i)
             {
-                BiomTemplate template = bioms_creators[i].GetBiomTemplate();
+                BiomTemplate template = _bioms_creators[i].GetBiomTemplate();
                 template.ID = i;
                 _bioms_templates[i] = template;
 
-                HeightsAgent.Instance.RegisterBiomTemplate(i, 
-                    _bioms_templates[i].HeightsMapAlgorithmType,
-                    bioms_creators[i].GetHeightsMapAlgorithm());
-                TexturesAgent.Instance.RegisterBiomTemplate(i, 
-                    _bioms_templates[i].TextureID);
+                _bioms_templates_objects_number += template.Objects.Length;
             }
         }
 
@@ -102,10 +119,14 @@ namespace PCG_Map.New_Bioms
 
         private void OnDestroy()
         {
-            _bioms_templates.Dispose();
+            foreach (var biom_template in _bioms_templates)
+                biom_template.Dispose();
             _bioms.Dispose();
             _algorithm.Dispose();
         }
+
+        public int BiomsTemplatesNumber { get { return _bioms_templates.Length; } }
+        public int BiomsTemplatesObjectsNumber { get { return _bioms_templates_objects_number; } }
     }
 
     [BurstCompile]

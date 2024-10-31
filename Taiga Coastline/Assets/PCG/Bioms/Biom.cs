@@ -20,9 +20,9 @@ namespace PCG_Map.Bioms
         public Texture2D GetTexture(Vector2 position) => _textures_controller.GetTexture(position);
         
 
-        public List<ObjectData> GetObjectsPrefabs(Vector2 position)
+        public List<OldObjectData> GetObjectsPrefabs(Vector2 position)
         {
-            List<ObjectData> objects = new List<ObjectData>();
+            List<OldObjectData> objects = new List<OldObjectData>();
             foreach (var obj in _objects_controller)
                 objects.AddRange(obj.GetObjectsPrefabs(position));
 

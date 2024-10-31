@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PCG_Map.Chunk
 {
-    public class ChunkData : MonoBehaviour
+    public class ChunkData
     {
         public GameObject Obj;
         public float2 Position;

@@ -26,14 +26,16 @@ namespace PCG_Map.Chunk
 
         public BiomsController BiomsController => BiomsController.Instance;
         public HeightsAgent HeightsAgent => HeightsAgent.Instance;
-        public TexturesAgent TextureAgent => TexturesAgent.Instance;
+        public TexturesAgent TexturesAgent => TexturesAgent.Instance;
+        public ObjectsAgent ObjectsAgent => ObjectsAgent.Instance;
 
         public NewChunk GenerateChunk(Vector2 default_position)
         {
             float2 position = default_position;
-            NewChunk chunk = new NewChunk(position, Size, HeightMapResolution, HeightMapResolution);
+            NewChunk chunk = new NewChunk(position, Size, HeightMapResolution, HeightMapResolution, Size, 4);
             chunk.UnfinishedJobs.Add(CalculateHeightMap(chunk));
             chunk.UnfinishedJobs.Add(CalculateTextureMap(chunk));
+            chunk.UnfinishedJobs.Add(GenerateObjects(chunk));
 
             return chunk;
             /*return new Chunk(
@@ -84,19 +86,24 @@ namespace PCG_Map.Chunk
 
             JobHandle bioms_id_handle = BiomsController.GetBioms(position, size, step, biom_id).Schedule(size * size, 64);
 
-            JobHandle texture_map_handle = TextureAgent.GetTextureMap(position, size, step, biom_id, texture_map, textures).Schedule(size * size, 64, bioms_id_handle);
+            JobHandle texture_map_handle = TexturesAgent.GetTextureMap(position, size, step, biom_id, texture_map, textures).Schedule(size * size, 64, bioms_id_handle);
 
             return texture_map_handle;
         }
 
-        private Terrain CreateTerrain()
+        private JobHandle GenerateObjects(NewChunk chunk)
         {
-            return _terrain_creator.GenerateTerrain();
-        }
+            float2 position = chunk.Position;
+            int size = chunk.ObjectMapResolution;
+            float step = (float)chunk.Size / size;
+            NativeArray<int> biom_id = chunk.ObjectsBiomsID;
+            NativeList<ObjectData> objects = chunk.Objects;
 
-        private List<GameObject> GenerateObjects(Vector2 position)
-        {
-            return ObjectsAgent.Instance.GetObjects(position, new(Size, Size));
+            JobHandle bioms_id_handle = BiomsController.GetBioms(position, size, step, biom_id).Schedule(size * size, 64);
+
+            JobHandle objects_handle = ObjectsAgent.GetObjects(position, size, step, biom_id, objects).Schedule(bioms_id_handle);
+
+            return objects_handle;
         }
     }
 }
