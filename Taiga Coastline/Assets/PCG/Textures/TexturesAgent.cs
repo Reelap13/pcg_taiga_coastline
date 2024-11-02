@@ -15,7 +15,7 @@ namespace PCG_Map.Textures
         private BiomsController BiomsController => Generator.Instance.Bioms;
 
         public FindTextureMap GetTextureMap(float2 start_position, int size, float step, 
-            NativeArray<int> bioms_id, NativeArray<int> texture_map, NativeParallelHashSet<int> textures)
+            NativeArray<PointBiom> biom_map, NativeArray<int> texture_map, NativeParallelHashSet<int> textures)
         {
             var job = new FindTextureMap
             {
@@ -23,7 +23,7 @@ namespace PCG_Map.Textures
                 Size = size,
                 Step = step,
                 AlgorithmData = _algorithm_data,
-                BiomsId = bioms_id,
+                BiomMap = biom_map,
                 TextureMap = texture_map,
                 Textures = textures.AsParallelWriter()
             };
@@ -58,13 +58,13 @@ namespace PCG_Map.Textures
         [ReadOnly] public int Size;
         [ReadOnly] public float Step;
         [ReadOnly] public TextureMapAlgorithmData AlgorithmData;
-        [ReadOnly] public NativeArray<int> BiomsId;
+        [ReadOnly] public NativeArray<PointBiom> BiomMap;
         [WriteOnly] public NativeArray<int> TextureMap;
         [WriteOnly] public NativeParallelHashSet<int>.ParallelWriter Textures;
 
         public void Execute(int index)
         {
-            int value = AlgorithmData.GetTexture(BiomsId[index]);
+            int value = AlgorithmData.GetTexture(BiomMap[index].TemplateID);
             TextureMap[index] = value;
             Textures.Add(value);
         }

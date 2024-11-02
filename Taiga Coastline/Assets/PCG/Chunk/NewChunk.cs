@@ -1,3 +1,4 @@
+using PCG_Map.New_Bioms;
 using PCG_Map.Objects;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,17 +16,17 @@ namespace PCG_Map.Chunk
 
         public int HeightMapResolution;
         public NativeArray<float> HeightMap;
-        public NativeArray<int> HeightMapBiomsID;
+        public NativeArray<PointBiom> HeightMapBioms;
 
         public int TextureMapResolution;
         public NativeArray<int> TextureMap;
         public NativeParallelHashSet<int> Textures;
-        public NativeArray<int> TextureMapBiomsID;
+        public NativeArray<PointBiom> TextureMapBioms;
 
         public int ObjectMapResolution;
         public int MaxObjectsNumber;
         public NativeList<ObjectData> Objects;
-        public NativeArray<int> ObjectsBiomsID;
+        public NativeArray<PointBiom> ObjectMapBioms;
 
         public List<JobHandle> UnfinishedJobs;
 
@@ -36,17 +37,17 @@ namespace PCG_Map.Chunk
 
             HeightMapResolution = height_map_resolution;
             HeightMap = new NativeArray<float>(height_map_resolution * height_map_resolution, Allocator.Persistent);
-            HeightMapBiomsID = new NativeArray<int>(height_map_resolution * height_map_resolution, Allocator.Persistent);
+            HeightMapBioms = new NativeArray<PointBiom>(height_map_resolution * height_map_resolution, Allocator.Persistent);
 
             TextureMapResolution = texture_map_resolution;
             TextureMap = new NativeArray<int>(texture_map_resolution * texture_map_resolution, Allocator.Persistent);
             Textures = new NativeParallelHashSet<int>(10, Allocator.Persistent);
-            TextureMapBiomsID = new NativeArray<int>(texture_map_resolution * texture_map_resolution, Allocator.Persistent);
+            TextureMapBioms = new NativeArray<PointBiom>(texture_map_resolution * texture_map_resolution, Allocator.Persistent);
 
             ObjectMapResolution = object_map_resolution;
             MaxObjectsNumber = max_objects_number;
             Objects = new NativeList<ObjectData>(max_objects_number * object_map_resolution * object_map_resolution, Allocator.Persistent);
-            ObjectsBiomsID = new NativeArray<int>(object_map_resolution * object_map_resolution, Allocator.Persistent);
+            ObjectMapBioms = new NativeArray<PointBiom>(object_map_resolution * object_map_resolution, Allocator.Persistent);
 
             UnfinishedJobs = new List<JobHandle>();
         }
@@ -54,14 +55,14 @@ namespace PCG_Map.Chunk
         public void Dispose()
         {
             HeightMap.Dispose();
-            HeightMapBiomsID.Dispose();
+            HeightMapBioms.Dispose();
 
             TextureMap.Dispose();
             Textures.Dispose();
-            TextureMapBiomsID.Dispose();
+            TextureMapBioms.Dispose();
 
             Objects.Dispose();
-            ObjectsBiomsID.Dispose();
+            ObjectMapBioms.Dispose();
         }
     }
 }

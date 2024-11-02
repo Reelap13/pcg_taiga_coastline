@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace PCG_Map.Algorithms
 {
-    public enum AlgorithmType
+    [System.Serializable]
+    public enum CoefficientEffectType
     {
-        PERLIN_NOISE,
-        MULTI_PERLIN_NOISE,
-        LINEAR
+        IGNORE,
+        DIRECT,
+        ADDITIONAL
     }
 }

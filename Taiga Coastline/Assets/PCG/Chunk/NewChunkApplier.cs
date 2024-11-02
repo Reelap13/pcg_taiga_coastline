@@ -31,6 +31,7 @@ namespace PCG_Map.Chunk
                 Size = chunk.Size,
                 Terrain = terrain
             };
+
             chunk.Dispose();
 
             return data;

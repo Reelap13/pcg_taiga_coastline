@@ -13,7 +13,7 @@ namespace PCG_Map.Objects
         private BiomsController BiomsController => Generator.Instance.Bioms;
 
         public FindObjects GetObjects(float2 start_position, int size, float step,
-            NativeArray<int> bioms_id, NativeList<ObjectData> objects)
+            NativeArray<PointBiom> biom_map, NativeList<ObjectData> objects)
         {
             var job = new FindObjects
             {
@@ -22,7 +22,7 @@ namespace PCG_Map.Objects
                 Step = step,
                 Seed = Generator.Instance.Seed,
                 AlgorithmData = _algorithm_data,
-                BiomsId = bioms_id,
+                BiomMap = biom_map,
                 Objects = objects.AsParallelWriter()
             };
 
@@ -56,7 +56,7 @@ namespace PCG_Map.Objects
         [ReadOnly] public float Step;
         [ReadOnly] public int Seed;
         [ReadOnly] public ObjectsAlgorithmData AlgorithmData;
-        [ReadOnly] public NativeArray<int> BiomsId;
+        [ReadOnly] public NativeArray<PointBiom> BiomMap;
         [WriteOnly] public NativeList<ObjectData>.ParallelWriter Objects;
 
         public void Execute()
@@ -68,7 +68,7 @@ namespace PCG_Map.Objects
                 for (int y = 0; y < Size; ++y)
                 {
                     float2 position = StartPosition + new float2(x, y) * Step;
-                    NativeArray<ObjectPrefabData> objects = AlgorithmData.GetBiomObjects(BiomsId[x * Size + y]);
+                    NativeArray<ObjectPrefabData> objects = AlgorithmData.GetBiomObjects(BiomMap[x * Size + y].TemplateID);
 
                     foreach (ObjectPrefabData obj in objects)
                         ProcessObjectPrefab(obj, position, ref random);

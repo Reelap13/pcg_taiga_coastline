@@ -70,20 +70,8 @@ namespace PCG_Map.Chunk
                     }
                 }
             }
-            /*foreach (var chunk in created_chunks)
-                _created_chunks[chunk].ChunkObj.SetActive(true);
-
-            int k = 0;
-            foreach (var chunk in noncreated_chunks)
-            {
-                ++k;
-                StartCoroutine(CreateChunk(chunk));
-                if (k == _chunk_processing_at_once_times)
-                {
-                    yield return null;
-                    k = 0;
-                }
-            }*/
+            foreach (var chunk in created_chunks)
+                _created_chunks[chunk].Obj.SetActive(true);
         }
 
         private IEnumerator CreateChunk(Vector2Int position)

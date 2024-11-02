@@ -64,13 +64,13 @@ namespace PCG_Map.Chunk
             float2 position = chunk.Position;
             int size = chunk.HeightMapResolution;
             float step = (float)chunk.Size / (chunk.HeightMapResolution - 1);
-            NativeArray<int> biom_id = chunk.HeightMapBiomsID;
+            NativeArray<PointBiom> biom_map = chunk.HeightMapBioms;
             NativeArray<float> height_map = chunk.HeightMap;
 
 
-            JobHandle bioms_id_handle = BiomsController.GetBioms(position, size, step, biom_id).Schedule(size * size, 64);
+            JobHandle bioms_id_handle = BiomsController.GetBioms(position, size, step, biom_map).Schedule(size * size, 64);
 
-            JobHandle height_map_handle = HeightsAgent.GetHeightMap(position, size, step, biom_id, height_map).Schedule(size * size, 64, bioms_id_handle);
+            JobHandle height_map_handle = HeightsAgent.GetHeightMap(position, size, step, biom_map, height_map).Schedule(size * size, 64, bioms_id_handle);
 
             return height_map_handle;
         }
@@ -80,13 +80,13 @@ namespace PCG_Map.Chunk
             float2 position = chunk.Position;
             int size = chunk.TextureMapResolution;
             float step = (float)chunk.Size / (chunk.TextureMapResolution - 1);
-            NativeArray<int> biom_id = chunk.TextureMapBiomsID;
+            NativeArray<PointBiom> biom_map = chunk.TextureMapBioms;
             NativeArray<int> texture_map = chunk.TextureMap;
             NativeParallelHashSet<int> textures = chunk.Textures;
 
-            JobHandle bioms_id_handle = BiomsController.GetBioms(position, size, step, biom_id).Schedule(size * size, 64);
+            JobHandle bioms_id_handle = BiomsController.GetBioms(position, size, step, biom_map).Schedule(size * size, 64);
 
-            JobHandle texture_map_handle = TexturesAgent.GetTextureMap(position, size, step, biom_id, texture_map, textures).Schedule(size * size, 64, bioms_id_handle);
+            JobHandle texture_map_handle = TexturesAgent.GetTextureMap(position, size, step, biom_map, texture_map, textures).Schedule(size * size, 64, bioms_id_handle);
 
             return texture_map_handle;
         }
@@ -96,12 +96,12 @@ namespace PCG_Map.Chunk
             float2 position = chunk.Position;
             int size = chunk.ObjectMapResolution;
             float step = (float)chunk.Size / size;
-            NativeArray<int> biom_id = chunk.ObjectsBiomsID;
+            NativeArray<PointBiom> biom_map = chunk.ObjectMapBioms;
             NativeList<ObjectData> objects = chunk.Objects;
 
-            JobHandle bioms_id_handle = BiomsController.GetBioms(position, size, step, biom_id).Schedule(size * size, 64);
+            JobHandle bioms_id_handle = BiomsController.GetBioms(position, size, step, biom_map).Schedule(size * size, 64);
 
-            JobHandle objects_handle = ObjectsAgent.GetObjects(position, size, step, biom_id, objects).Schedule(bioms_id_handle);
+            JobHandle objects_handle = ObjectsAgent.GetObjects(position, size, step, biom_map, objects).Schedule(bioms_id_handle);
 
             return objects_handle;
         }

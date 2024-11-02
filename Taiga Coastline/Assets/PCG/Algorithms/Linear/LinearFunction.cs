@@ -6,17 +6,17 @@ using UnityEngine;
 namespace PCG_Map.Algorithms.Linear
 {
     [BurstCompile]
-    public struct LinearFunction : IHeightsMapAlgorithm
+    public struct LinearFunction : IHeightMapAlgorithm
     {
         public LinearFunctionData Data;
         public LinearFunction(LinearFunctionData data) { this.Data = data; }
 
-        public float CalculateHeight(float2 position)
+        public float CalculateHeightMap(float2 position, float coefficient)
         {
-            return Calculate(position.x, position.y);
+            return Calculate(position.x, position.y, coefficient);
         }
 
-        public float Calculate(float x, float y)
+        public float Calculate(float x, float y, float coefficient)
         {
             float value = Data.BaseValue + 
                 (x + Data.Offsets.x) * Data.Coefficients.x + 

@@ -8,6 +8,8 @@ namespace PCG_Map.New_Bioms
     {
         SEA,
         FOREST,
+        FIELD,
+        MOUNTAIN,
         UNKNOWN
     }
 }

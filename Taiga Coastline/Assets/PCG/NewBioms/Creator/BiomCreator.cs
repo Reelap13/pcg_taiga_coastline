@@ -24,6 +24,6 @@ namespace PCG_Map.New_Bioms.Creator
             };
         }
 
-        public IHeightsMapAlgorithm GetHeightsMapAlgorithm() { return _height_map.GetHeightsMapAlgorithm(); }
+        public IHeightMapAlgorithm GetHeightsMapAlgorithm() { return _height_map.GetHeightsMapAlgorithm(); }
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace PCG_Map.Algorithms
 {
-    public interface IHeightsMapAlgorithm
+    public interface IHeightMapAlgorithm
     {
-        public float CalculateHeight(float2 position);
+        public float CalculateHeightMap(float2 position, float coefficient);
     }
 }

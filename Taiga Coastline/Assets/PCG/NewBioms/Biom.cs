@@ -8,6 +8,7 @@ namespace PCG_Map.New_Bioms
     public struct Biom
     {
         public int TemplateID;
+        public BiomType Type;
         public float2 Position;
     }
 }
