@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 9618
+  controlID: 13333
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 9619
+  controlID: 13334
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 9620
+  controlID: 13335
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -240,8 +240,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 78d97cff
-      m_LastClickedID: -8595080
+      m_SelectedIDs: 806c0000
+      m_LastClickedID: 27776
       m_ExpandedIDs: 76d97cff78d97cff20f9ffff2cfbffff426c00005a6c0000806c0000946c0000b46c0000da6c0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
   - {fileID: 10}
   - {fileID: 11}
   m_Selected: 1
-  m_LastSelected: 3
+  m_LastSelected: 4
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -3348,8 +3348,8 @@ MonoBehaviour:
     y: 438.4
     width: 1156
     height: 284.4
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 13}
@@ -3402,7 +3402,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Assets/Supercyan Free Forest Sample/Textures/Ground
+    - Assets/PCG/Chunk
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -3410,15 +3410,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 60
   m_LastFolders:
-  - Assets/Assets/Supercyan Free Forest Sample/Textures/Ground
+  - Assets/PCG/Chunk
   m_LastFoldersGridSize: 60
   m_LastProjectPath: C:\Users\mixai\UnityPr\pcg_taiga_coastline\Taiga Coastline
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 428.6}
-    m_SelectedIDs: 60750000
-    m_LastClickedID: 30048
+    scrollPos: {x: 0, y: 448.6}
+    m_SelectedIDs: 3e6f0000
+    m_LastClickedID: 28478
     m_ExpandedIDs: 000000007c6d00007e6d0000806d0000826d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -3472,8 +3472,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 806c0000
-    m_LastClickedInstanceID: 27776
+    m_SelectedInstanceIDs: dea50000
+    m_LastClickedInstanceID: 42462
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000b475000024ae0000be9500002eae0000dead000066ae0000301b0100846b01002c6b0100e46a0100306b01005c6b01005680000020ba00001aba00002c8b0000
     m_RenameOverlay:
@@ -3557,8 +3557,8 @@ MonoBehaviour:
     y: 0
     width: 380
     height: 722.8
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -3606,7 +3606,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 796.80005
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

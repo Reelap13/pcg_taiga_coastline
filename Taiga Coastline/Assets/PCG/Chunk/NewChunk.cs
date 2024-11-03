@@ -1,3 +1,4 @@
+using PCG_Map.Algorithms;
 using PCG_Map.New_Bioms;
 using PCG_Map.Objects;
 using System.Collections;
@@ -9,28 +10,27 @@ using UnityEngine;
 
 namespace PCG_Map.Chunk
 {
-    public class NewChunk
+    public struct NewChunk
     {
         public float2 Position;
         public int Size;
 
-        public int HeightMapResolution;
-        public NativeArray<float> HeightMap;
-        public NativeArray<PointBiom> HeightMapBioms;
+        public int HTMapsResolution; // resolution of height and texture maps
+        public int ObjectMapResolution; // resolution of object map
 
-        public int TextureMapResolution;
-        public NativeArray<int> TextureMap;
+        public Map<PointBiom> HTBiomMap; // biom map for height and texture maps
+        public Map<PointBiom> ObjectBiomMap; // biom map for objects
+
+        public Map<float> HeightMap;
+
+        public Map<int> TextureMap;
         public NativeParallelHashSet<int> Textures;
-        public NativeArray<PointBiom> TextureMapBioms;
 
-        public int ObjectMapResolution;
-        public int MaxObjectsNumber;
         public NativeList<ObjectData> Objects;
-        public NativeArray<PointBiom> ObjectMapBioms;
 
         public List<JobHandle> UnfinishedJobs;
 
-        public NewChunk(float2 position, int size, int height_map_resolution, int texture_map_resolution, int object_map_resolution, int max_objects_number)
+        /*public NewChunk(float2 position, int size, int height_map_resolution, int texture_map_resolution, int object_map_resolution, int max_objects_number)
         {
             Position = position;
             Size = size;
@@ -50,19 +50,19 @@ namespace PCG_Map.Chunk
             ObjectMapBioms = new NativeArray<PointBiom>(object_map_resolution * object_map_resolution, Allocator.Persistent);
 
             UnfinishedJobs = new List<JobHandle>();
-        }
+        }*/
 
         public void Dispose()
         {
+            HTBiomMap.Dispose();
+            ObjectBiomMap.Dispose();
+
             HeightMap.Dispose();
-            HeightMapBioms.Dispose();
 
             TextureMap.Dispose();
             Textures.Dispose();
-            TextureMapBioms.Dispose();
 
             Objects.Dispose();
-            ObjectMapBioms.Dispose();
         }
     }
 }

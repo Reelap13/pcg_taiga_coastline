@@ -19,10 +19,12 @@ namespace PCG_Map.Chunk
         [SerializeField] private ChunksLoader _chunks_loader;
         [SerializeField] private NewChunkApplier _chunks_applier;
         [SerializeField] private int _height_map_coefficient = 2;
-        [SerializeField] private int _chunk_allying_per_frame = 4;
+        [SerializeField] private int _chunk_aplying_per_frame = 4;
 
         public int Size => ChunksManager.ChunkSize;
-        public int HeightMapResolution => ChunksManager.ChunkSize * _height_map_coefficient + 1;
+        public int HTMapResolution => ChunksManager.ChunkSize * _height_map_coefficient + 1; // resolution of height and texture maps
+        public int ObjectMapResolution => ChunksManager.ChunkSize; // resolution of object map
+
 
         private List<NewChunk> _generating_chunks = new();
 
@@ -51,7 +53,7 @@ namespace PCG_Map.Chunk
                     continue;
 
                 ++k;
-                if (k > _chunk_allying_per_frame)
+                if (k > _chunk_aplying_per_frame)
                     break;
                 finished_generation_chunks.Add(chunk);
             }
@@ -73,7 +75,7 @@ namespace PCG_Map.Chunk
         }
 
         private NewChunk GenerateChunk(Vector2 position) => _chunks_generator.GenerateChunk(position);
-        private NewChunk LoadChunk(Vector2 position) => _chunks_loader.LoadChunk(position);
+        //private NewChunk LoadChunk(Vector2 position) => _chunks_loader.LoadChunk(position);
         private bool CheckToLoaded(Vector2 position) => _chunks_loader.CheckToLoaded(position);
     }
 }

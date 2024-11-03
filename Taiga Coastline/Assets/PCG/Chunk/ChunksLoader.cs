@@ -6,9 +6,9 @@ namespace PCG_Map.Chunk
 {
     public class ChunksLoader : MonoBehaviour
     { 
-        public NewChunk LoadChunk(Vector2 position)
+        public void LoadChunk(Vector2 position)
         {
-            return null;
+
         }
 
 

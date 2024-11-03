@@ -1392,7 +1392,7 @@ MonoBehaviour:
   _chunks_loader: {fileID: 2139570847}
   _chunks_applier: {fileID: 740280838}
   _height_map_coefficient: 2
-  _chunk_allying_per_frame: 1
+  _chunk_aplying_per_frame: 1
 --- !u!1 &1340575094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,6 +1440,7 @@ MonoBehaviour:
   <ChunksFactory>k__BackingField: {fileID: 1339447818}
   _textures_agent: {fileID: 0}
   _terrain_creator: {fileID: 0}
+  _object_number_per_field: 2
 --- !u!1 &1413145848
 GameObject:
   m_ObjectHideFlags: 0

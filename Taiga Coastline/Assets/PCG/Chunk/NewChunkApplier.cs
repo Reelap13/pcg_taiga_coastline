@@ -42,7 +42,7 @@ namespace PCG_Map.Chunk
             Terrain terrain = _terrain_creator.GenerateTerrain();
             terrain.transform.SetParent(chunk_obj.transform);
 
-            terrain.terrainData.heightmapResolution = chunk.HeightMapResolution;
+            terrain.terrainData.heightmapResolution = chunk.HTMapsResolution;
             terrain.terrainData.size = new Vector3(chunk.Size, Generator.Instance.HeightsAgent.TerrainHeight, chunk.Size);
 
             return terrain;
@@ -56,11 +56,11 @@ namespace PCG_Map.Chunk
 
         private void ApplyHeightMap(NewChunk chunk, Terrain terrain)
         {
-            float[,] height_map = new float[chunk.HeightMapResolution, chunk.HeightMapResolution];
-            for (int i = 0; i < chunk.HeightMapResolution; ++i)
-                for (int j = 0; j < chunk.HeightMapResolution; ++j)
+            float[,] height_map = new float[chunk.HTMapsResolution, chunk.HTMapsResolution];
+            for (int i = 0; i < chunk.HTMapsResolution; ++i)
+                for (int j = 0; j < chunk.HTMapsResolution; ++j)
                 {
-                    height_map[i, j] = chunk.HeightMap[j * chunk.HeightMapResolution + i]; // problem with terrain coordinates(swaped x and z)
+                    height_map[i, j] = chunk.HeightMap.GetData(j, i); // problem with terrain coordinates(swaped x and z)
                 }
             terrain.terrainData.SetHeights(0, 0, height_map);
         }
@@ -69,7 +69,7 @@ namespace PCG_Map.Chunk
         {
             NativeArray<int> unique_textures = chunk.Textures.ToNativeArray(Allocator.Temp);
 
-            int size = chunk.TextureMapResolution;
+            int size = chunk.HTMapsResolution;
             int textures_number = unique_textures.Length;
 
             terrain.terrainData.alphamapResolution = size;
@@ -87,7 +87,7 @@ namespace PCG_Map.Chunk
                 {
                     for (int y = 0; y < size; ++y)
                     {
-                        int xy_texture_id = chunk.TextureMap[y * size + x]; // problem with terrain coordinates(swaped x and z)
+                        int xy_texture_id = chunk.TextureMap.GetData(y, x); // problem with terrain coordinates(swaped x and z)
                         
                         splatmap_data[x, y, texture_number] = xy_texture_id == texture_id ? 1 : 0;
                     }
