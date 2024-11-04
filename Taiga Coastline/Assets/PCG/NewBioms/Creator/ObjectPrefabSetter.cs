@@ -1,7 +1,9 @@
 using PCG_Map.Objects;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace PCG_Map.New_Bioms.Creator
@@ -14,6 +16,7 @@ namespace PCG_Map.New_Bioms.Creator
         public ObjectPrefabSetterData Data { get { return _data; } }
         public GameObject[] Prefabs { get { return _prefabs; } }
 
+#if UNITY_EDITOR
         [CustomEditor(typeof(ObjectPrefabSetter))]
         public class ObjectPrefabSetterEditor : Editor
         {
@@ -59,8 +62,8 @@ namespace PCG_Map.New_Bioms.Creator
                     EditorUtility.SetDirty(creator);
             }
         }
+#endif
     }
-
     [System.Serializable]
     public class ObjectPrefabSetterData
     {
@@ -70,5 +73,6 @@ namespace PCG_Map.New_Bioms.Creator
         public float SpawnFrequency = 1f;
         public float Height = -1f;
         public float HeightOffset = 0f;
+        public Vector2 TerrainHeightBorders = new(0, 600);
     }
 }

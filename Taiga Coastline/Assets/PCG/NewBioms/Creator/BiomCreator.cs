@@ -19,7 +19,7 @@ namespace PCG_Map.New_Bioms.Creator
             {
                 Type = _biom_type,
                 HeightsMapAlgorithmType = _height_map.Type,
-                TextureID = _texture_map.GetTextureID(),
+                Texture = _texture_map.GetTexture(),
                 Objects = _objects.GetObjectsData()
             };
         }

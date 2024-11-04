@@ -1,5 +1,6 @@
 using PCG_Map.Algorithms;
 using PCG_Map.Objects;
+using PCG_Map.Textures;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -13,7 +14,7 @@ namespace PCG_Map.New_Bioms
         public BiomType Type;
 
         public HeightMapAlgorithmType HeightsMapAlgorithmType;
-        public int TextureID;
+        public TextureData Texture;
 
         public NativeArray<ObjectPrefabData> Objects;
 

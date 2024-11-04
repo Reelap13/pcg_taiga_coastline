@@ -8,6 +8,7 @@ namespace PCG_Map.Objects
     public enum ObjectSpawnAlgorithmType
     {
         BY_SPAWN_FREQUENCY,
-        ALWAYS_ONE
+        ALWAYS_ONE,
+        ALWAIS_ONE_PER_CHUNK
     }
 }

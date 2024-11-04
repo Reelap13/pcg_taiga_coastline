@@ -8,8 +8,8 @@ namespace PCG_Map.Textures
     {
         [SerializeField] private Texture2D[] _textures;
 
-        private Dictionary<int, TextureData> _id_to_texture;
-        private Dictionary<Texture2D, TextureData> _texture_to_id;
+        private Dictionary<int, TextureSetData> _id_to_texture;
+        private Dictionary<Texture2D, TextureSetData> _texture_to_id;
 
         public void Initialize()
         {
@@ -20,7 +20,7 @@ namespace PCG_Map.Textures
 
             foreach (Texture2D texture in _textures)
             {
-                TextureData data = new(texture, id);
+                TextureSetData data = new(texture, id);
                 _id_to_texture.Add(id, data);
                 _texture_to_id.Add(texture, data);
 
@@ -28,7 +28,7 @@ namespace PCG_Map.Textures
             }
         }
 
-        public TextureData GetTextureData(int id)
+        public TextureSetData GetTextureData(int id)
         {
             if (IsExisted(id))
                 return _id_to_texture[id];
@@ -37,7 +37,7 @@ namespace PCG_Map.Textures
             return null;
         }
 
-        public TextureData GetTextureData(Texture2D texture)
+        public TextureSetData GetTextureData(Texture2D texture)
         {
             if (IsExisted(texture))
                 return _texture_to_id[texture];

@@ -10,6 +10,7 @@ namespace PCG_Map.New_Bioms
         FOREST,
         FIELD,
         MOUNTAIN,
+        Lake,
         UNKNOWN
     }
 }

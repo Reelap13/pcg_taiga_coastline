@@ -10,14 +10,14 @@ namespace PCG_Map.Textures
     [BurstCompile]
     public struct TextureMapAlgorithmData
     {
-        public NativeHashMap<int, int> BiomsTextures;
+        public NativeHashMap<int, TextureData> BiomsTextures;
 
-        public void AddBiomTemplateTexture(int biom_id, int texture_id)
+        public void AddBiomTemplateTexture(int biom_id, TextureData texture)
         {
-            BiomsTextures.Add(biom_id, texture_id);
+            BiomsTextures.Add(biom_id, texture);
         }
 
-        public int GetTexture(int biom_id)
+        public TextureData GetTexture(int biom_id)
         {
             return BiomsTextures[biom_id];
         }

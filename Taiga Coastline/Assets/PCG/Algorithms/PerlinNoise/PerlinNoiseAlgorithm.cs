@@ -22,7 +22,8 @@ namespace PCG_Map.Algorithms.PerlinNoise
             float2 position = new float2(x / Data.Smoothness, y / Data.Smoothness);
 
             //useing a Simplex Nise insted a Perlin Noise as don't have a perline noise implementation(fixed in the future)
-            float height = Data.BaseValue + noise.snoise(position) * Data.Amplitude * ProcessCoefficient(coefficient);
+            float noise_value = (noise.snoise(position) + 1) / 2f;
+            float height = Data.BaseValue + noise_value * Data.Amplitude * ProcessCoefficient(coefficient);
             height = math.clamp(height, Data.Borders.x, Data.Borders.y);
             return math.lerp(0, 1, height / Data.Borders.y);
         }

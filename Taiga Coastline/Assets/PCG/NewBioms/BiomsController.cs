@@ -44,7 +44,7 @@ namespace PCG_Map.New_Bioms
                     _bioms_templates[i].HeightsMapAlgorithmType,
                     _bioms_creators[i].GetHeightsMapAlgorithm());
                 TexturesAgent.Instance.RegisterBiomTemplate(i,
-                    _bioms_templates[i].TextureID);
+                    _bioms_templates[i].Texture);
                 ObjectsAgent.Instance.RegisterBiomTemplate(i,
                     _bioms_templates[i].Objects);
             }

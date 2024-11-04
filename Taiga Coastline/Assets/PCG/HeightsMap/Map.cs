@@ -24,6 +24,7 @@ namespace PCG_Map.Algorithms
 
         public T GetData(int2 indexes) { return GetData(indexes.x, indexes.y); }
         public T GetData(int i, int j) { return Data[i * Size + j]; }
+        public T GetData(int index) { return Data[index]; }
 
         public void Dispose()
         {

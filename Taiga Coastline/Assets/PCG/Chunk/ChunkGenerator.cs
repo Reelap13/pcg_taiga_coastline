@@ -181,7 +181,8 @@ namespace PCG_Map.Chunk
                 chunk.TextureMap.Step, 
                 chunk.HTBiomMap.Data,
                 chunk.TextureMap.Data, 
-                chunk.Textures).Schedule(chunk.TextureMap.Size * chunk.TextureMap.Size, 64, height_map_handle);
+                chunk.Textures,
+                chunk.HeightMap).Schedule(chunk.TextureMap.Size * chunk.TextureMap.Size, 64, height_map_handle);
 
             return texture_map_handle;
         }
@@ -194,12 +195,15 @@ namespace PCG_Map.Chunk
             NativeArray<PointBiom> biom_map = chunk.ObjectBiomMap.Data;
             NativeList<ObjectData> objects = chunk.Objects;
 
+            JobHandle combined_handle = JobHandle.CombineDependencies(biom_map_handle, texture_map_handle);
+
             JobHandle objects_handle = ObjectsAgent.GetObjects(
                 position, 
                 size,
                 step, 
                 biom_map,
-                objects).Schedule(biom_map_handle);
+                objects,
+                chunk.HeightMap).Schedule(combined_handle);
 
             return objects_handle;
         }

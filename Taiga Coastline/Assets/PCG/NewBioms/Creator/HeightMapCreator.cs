@@ -3,7 +3,9 @@ using PCG_Map.Algorithms.Linear;
 using PCG_Map.Algorithms.PerlinNoise;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace PCG_Map.New_Bioms.Creator
@@ -36,6 +38,7 @@ namespace PCG_Map.New_Bioms.Creator
         }
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(HeightMapCreator))]
     public class HeightsMapCreatorEditor : Editor
     {
@@ -82,4 +85,5 @@ namespace PCG_Map.New_Bioms.Creator
                 EditorUtility.SetDirty(creator);
         }
     }
+#endif
 }
