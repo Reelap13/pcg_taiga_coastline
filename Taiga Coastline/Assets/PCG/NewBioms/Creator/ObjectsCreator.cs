@@ -32,6 +32,7 @@ namespace PCG_Map.New_Bioms.Creator
                     Height = data.Height,
                     HeightOffset = data.HeightOffset,
                     TerrainHeightBorders = data.TerrainHeightBorders,
+                    ScaleInterval = data.ScaleInterval,
                 };
             }
 

@@ -13,6 +13,7 @@ namespace PCG_Map.Objects
         public float Height;
         public float HeightOffset;
         public float2 TerrainHeightBorders;
+        public float2 ScaleInterval;
 
         public bool Equals(ObjectPrefabData other)
         {

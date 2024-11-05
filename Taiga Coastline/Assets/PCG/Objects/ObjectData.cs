@@ -11,5 +11,6 @@ namespace PCG_Map.Objects
         public float2 Position;
         public float Height;
         public float Rotation;
+        public float Scale;
     }
 }

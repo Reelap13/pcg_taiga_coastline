@@ -103,7 +103,8 @@ namespace PCG_Map.Objects
                 PrefabID = obj_prefab.PrefabID,
                 Position = GetObjectPosition(obj_prefab, position, ref random),
                 Height = GetObjectHeight(obj_prefab),
-                Rotation = GetRotateion(random)
+                Rotation = GetRotateion(ref random),
+                Scale = GetScale(obj_prefab, ref random)
             });
         }
 
@@ -116,7 +117,8 @@ namespace PCG_Map.Objects
                 PrefabID = obj_prefab.PrefabID,
                 Position = GetObjectPosition(obj_prefab, position, ref random),
                 Height = GetObjectHeight(obj_prefab),
-                Rotation = 0
+                Rotation = 0,
+                Scale = 1f
             });
         }
 
@@ -157,9 +159,14 @@ namespace PCG_Map.Objects
             return obj_prefab.Height + obj_prefab.HeightOffset;
         }
 
-        private float GetRotateion(Unity.Mathematics.Random random)
+        private float GetRotateion(ref Unity.Mathematics.Random random)
         {
             return random.NextFloat() * 360;
+        }
+
+        private float GetScale(ObjectPrefabData obj_prefab, ref Unity.Mathematics.Random random)
+        {
+            return random.NextFloat(obj_prefab.ScaleInterval.x, obj_prefab.ScaleInterval.y);
         }
     }
 }

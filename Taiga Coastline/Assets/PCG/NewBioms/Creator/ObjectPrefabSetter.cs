@@ -74,5 +74,6 @@ namespace PCG_Map.New_Bioms.Creator
         public float Height = -1f;
         public float HeightOffset = 0f;
         public Vector2 TerrainHeightBorders = new(0, 600);
+        public Vector2 ScaleInterval = new(1, 1);
     }
 }

@@ -118,6 +118,8 @@ namespace PCG_Map.Chunk
                 Vector3 rotation = obj.transform.eulerAngles;
                 rotation.y = obj_data.Rotation;
                 obj.transform.rotation = Quaternion.Euler(rotation);
+
+                obj.transform.localScale = new(obj_data.Scale, obj_data.Scale, obj_data.Scale);
             }
             Debug.Log($"Hi, {chunk.Objects.Length} objects was generated!");
         }

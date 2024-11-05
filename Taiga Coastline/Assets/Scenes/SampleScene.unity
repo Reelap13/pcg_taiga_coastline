@@ -177,6 +177,7 @@ MonoBehaviour:
     Height: 43
     HeightOffset: 0
     TerrainHeightBorders: {x: 0, y: 45}
+    ScaleInterval: {x: 1, y: 1}
 --- !u!1 &65917794
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +208,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1144263400}
+  - {fileID: 546668874}
+  - {fileID: 1257879061}
   - {fileID: 1475331225}
+  - {fileID: 776622253}
   m_Father: {fileID: 1876848749}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &82366078
@@ -240,6 +244,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1498875132}
+  - {fileID: 229633083}
   - {fileID: 1454298303}
   m_Father: {fileID: 1139115586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -308,9 +313,9 @@ MonoBehaviour:
     Length: 3
     FirstTexture: {fileID: 2800000, guid: 4900b2b933f056247806df532f93e2b9, type: 3}
     FirstMaxHeight: 58
-    SecondTexture: {fileID: 2800000, guid: 663e42f73ce2d4c4da1a7bd245ba91a2, type: 3}
+    SecondTexture: {fileID: 2800000, guid: 0f584f8bbdebd35418505feff5fcb496, type: 3}
     SecondMaxHeight: 120
-    ThirdTexture: {fileID: 2800000, guid: c34ec4ea33f41784dada5802e39a8165, type: 3}
+    ThirdTexture: {fileID: 2800000, guid: c544a7679250d944db51dc8e9aa00486, type: 3}
 --- !u!114 &180937102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,8 +511,8 @@ MonoBehaviour:
   TextureData:
     Type: 1
     Length: 2
-    FirstTexture: {fileID: 2800000, guid: 93c35c655eda82e4ab8d37117b49e15c, type: 3}
-    FirstMaxHeight: 45
+    FirstTexture: {fileID: 2800000, guid: d6cb25a613915de4a97307306e5a610d, type: 3}
+    FirstMaxHeight: 50
     SecondTexture: {fileID: 2800000, guid: 4900b2b933f056247806df532f93e2b9, type: 3}
     SecondMaxHeight: 1000
     ThirdTexture: {fileID: 0}
@@ -663,6 +668,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &229633082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229633083}
+  - component: {fileID: 229633084}
+  m_Layer: 0
+  m_Name: Flowers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229633083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229633082}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 82366079}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229633084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229633082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462a847792ecc7e4e92a010cc7c876dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabs:
+  - {fileID: 1046453777464574, guid: 1aad01ae01d836647b215e40f1f4c1a7, type: 3}
+  - {fileID: 1269754475505960, guid: 186ecc7a1f977cc4fab5658c00fa3c4d, type: 3}
+  - {fileID: 1143931805411576, guid: f71e980e020ab924ebed9a227a648ec8, type: 3}
+  _data:
+    SpawnAlgorithmType: 0
+    PlacementAlgorithmType: 2
+    HeightAlgorithmType: 0
+    SpawnFrequency: 0.01
+    Height: -1
+    HeightOffset: 0
+    TerrainHeightBorders: {x: 0, y: 600}
+    ScaleInterval: {x: 20, y: 40}
 --- !u!1 &300819146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,7 +1130,7 @@ MonoBehaviour:
       m_Calls: []
   <ChunkManager>k__BackingField: {fileID: 503773061}
   _target: {fileID: 330585546}
---- !u!1 &666614067
+--- !u!1 &546668873
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1076,53 +1138,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 666614068}
-  - component: {fileID: 666614069}
+  - component: {fileID: 546668874}
+  - component: {fileID: 546668875}
   m_Layer: 0
-  m_Name: Grass
+  m_Name: Stump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &666614068
+--- !u!4 &546668874
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666614067}
+  m_GameObject: {fileID: 546668873}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1940482511}
+  m_Father: {fileID: 65917795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &666614069
+--- !u!114 &546668875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666614067}
+  m_GameObject: {fileID: 546668873}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 462a847792ecc7e4e92a010cc7c876dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabs:
-  - {fileID: 1991978804857108, guid: 791c30b04e8fc1e4fbf198c410a652e2, type: 3}
-  - {fileID: 1904171308060102, guid: b3425777f1700b249a15eea0ea8f0bbc, type: 3}
+  - {fileID: 1552303706785112, guid: 91d4800e505e7de4dae44d7a3a9cbd1d, type: 3}
   _data:
     SpawnAlgorithmType: 0
     PlacementAlgorithmType: 2
     HeightAlgorithmType: 0
-    SpawnFrequency: 0.5
+    SpawnFrequency: 0.005
     Height: -1
     HeightOffset: 0
-    TerrainHeightBorders: {x: 46, y: 600}
+    TerrainHeightBorders: {x: 0, y: 600}
+    ScaleInterval: {x: 0.9, y: 1.4}
 --- !u!1 &701500905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1239,7 @@ MonoBehaviour:
     Height: -1
     HeightOffset: 0
     TerrainHeightBorders: {x: 0, y: 58}
+    ScaleInterval: {x: 1, y: 1}
 --- !u!1 &714755972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,6 +1357,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1339447817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &776622252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 776622253}
+  - component: {fileID: 776622254}
+  m_Layer: 0
+  m_Name: Bush
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &776622253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776622252}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 65917795}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &776622254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776622252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462a847792ecc7e4e92a010cc7c876dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabs:
+  - {fileID: 4263922822445002727, guid: 3cdafb3c2f54d434894928d72d282874, type: 3}
+  - {fileID: 6239969156481229051, guid: b71b0f8d2f881c743a85228f3030d1cb, type: 3}
+  _data:
+    SpawnAlgorithmType: 0
+    PlacementAlgorithmType: 2
+    HeightAlgorithmType: 0
+    SpawnFrequency: 0.01
+    Height: -1
+    HeightOffset: 0
+    TerrainHeightBorders: {x: 0, y: 600}
+    ScaleInterval: {x: 0.9, y: 1.4}
 --- !u!1 &789402367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1693,7 @@ MonoBehaviour:
     Height: -1
     HeightOffset: 0
     TerrainHeightBorders: {x: 0, y: 600}
+    ScaleInterval: {x: 0.9, y: 1.4}
 --- !u!1 &1149247318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,6 +1725,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 714755974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1257879060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1257879061}
+  - component: {fileID: 1257879062}
+  m_Layer: 0
+  m_Name: Mushrooms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1257879061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257879060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 65917795}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1257879062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257879060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462a847792ecc7e4e92a010cc7c876dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabs:
+  - {fileID: 1127315056602366, guid: 3a9df2c30188f10438112114dc22bae1, type: 3}
+  - {fileID: 1240686429475702, guid: da33a1bfeaaabaa4597896ca7003b785, type: 3}
+  _data:
+    SpawnAlgorithmType: 0
+    PlacementAlgorithmType: 2
+    HeightAlgorithmType: 0
+    SpawnFrequency: 0.01
+    Height: -1
+    HeightOffset: 0
+    TerrainHeightBorders: {x: 0, y: 600}
+    ScaleInterval: {x: 0.9, y: 1.4}
 --- !u!1 &1311042767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +1828,11 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 4900b2b933f056247806df532f93e2b9, type: 3}
   - {fileID: 2800000, guid: 663e42f73ce2d4c4da1a7bd245ba91a2, type: 3}
   - {fileID: 2800000, guid: c34ec4ea33f41784dada5802e39a8165, type: 3}
+  - {fileID: 2800000, guid: 28a51d508c86a8948b59df81d5188b17, type: 3}
+  - {fileID: 2800000, guid: a5aa62ec319a9b345ba00d092a70396f, type: 3}
+  - {fileID: 2800000, guid: 0f584f8bbdebd35418505feff5fcb496, type: 3}
+  - {fileID: 2800000, guid: d6cb25a613915de4a97307306e5a610d, type: 3}
+  - {fileID: 2800000, guid: c544a7679250d944db51dc8e9aa00486, type: 3}
 --- !u!4 &1311042770
 Transform:
   m_ObjectHideFlags: 0
@@ -1870,6 +2051,7 @@ MonoBehaviour:
     Height: -1
     HeightOffset: 0
     TerrainHeightBorders: {x: 0, y: 600}
+    ScaleInterval: {x: 1, y: 1}
 --- !u!1 &1475331224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,6 +2107,7 @@ MonoBehaviour:
     Height: -1
     HeightOffset: 0
     TerrainHeightBorders: {x: 0, y: 600}
+    ScaleInterval: {x: 1, y: 1}
 --- !u!1 &1498875131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,6 +2162,7 @@ MonoBehaviour:
     Height: -1
     HeightOffset: 0
     TerrainHeightBorders: {x: 0, y: 600}
+    ScaleInterval: {x: 1, y: 1}
 --- !u!1 &1876848748
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,7 +2395,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2049122679}
-  - {fileID: 666614068}
   - {fileID: 50398519}
   m_Father: {fileID: 188059455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2268,7 +2451,8 @@ MonoBehaviour:
     SpawnFrequency: 0.01
     Height: -1
     HeightOffset: 0
-    TerrainHeightBorders: {x: 46, y: 600}
+    TerrainHeightBorders: {x: 51, y: 600}
+    ScaleInterval: {x: 1, y: 1}
 --- !u!1 &2106083959
 GameObject:
   m_ObjectHideFlags: 0
