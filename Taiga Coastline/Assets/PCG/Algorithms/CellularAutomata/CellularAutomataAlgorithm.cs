@@ -22,7 +22,7 @@ namespace PCG_Map.Algorithms.CelluralAutomata
              
         public void Initialize()
         {
-            float2 position = new(_borders.x, _borders.x);
+            float2 position = new(_borders.x);
             int size = _size;
             float step = (_borders.y - _borders.x) / size;
             NativeArray<BiomType> biom_map_data = new NativeArray<BiomType>(size * size, Allocator.Persistent);
@@ -36,7 +36,7 @@ namespace PCG_Map.Algorithms.CelluralAutomata
 
             _biom_map = new Map<BiomType>()
             {
-                Position = position,
+                Position = new(position),
                 Size = size,
                 Step = step,
                 Data = biom_map_data
@@ -97,6 +97,11 @@ namespace PCG_Map.Algorithms.CelluralAutomata
         private void OnDestroy()
         {
             _biom_map.Dispose();
+        }
+
+        public BiomType GetBiomType(float2 position)
+        {
+            return _biom_map.GetData(position);
         }
 
         public Map<BiomType> BiomMap { get { return _biom_map; } }

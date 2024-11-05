@@ -118,8 +118,8 @@ namespace PCG_Map.Objects
                 Position = GetObjectPosition(obj_prefab, position, ref random),
                 Height = GetObjectHeight(obj_prefab),
                 Rotation = 0,
-                Scale = 1f
-            });
+                Scale = GetScale(obj_prefab, ref random)
+            }); ;
         }
 
         private bool IsSpawnable(ObjectPrefabData obj_prefab, float2 position, 

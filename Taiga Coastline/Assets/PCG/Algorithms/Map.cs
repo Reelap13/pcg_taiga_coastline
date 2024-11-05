@@ -17,7 +17,7 @@ namespace PCG_Map.Algorithms
         {
             float2 shift = position - Position;
             int2 indexes = new(math.round(shift / Step));
-
+            indexes = math.clamp(indexes, new(0), new(Size - 1));
             return GetData(indexes);
         }
 

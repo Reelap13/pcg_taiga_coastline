@@ -81,14 +81,26 @@ namespace PCG_Map.New_Bioms
                 float2 position = new float2(
                     random.NextFloat(_borders.x, _borders.z), 
                     random.NextFloat(_borders.y, _borders.w));
-                BiomTemplate template = _bioms_templates[random.NextInt(0, _bioms_templates.Length)];
 
+                BiomType type = _biom_map_generator.GetBiomType(position);
+                BiomTemplate template = GetBiomtemplateByType(type);
+
+                Debug.Log($"{position} {type}");
                 _bioms[i] = new Biom() {
                     TemplateID = template.ID,
                     Type = template.Type,
                     Position = position
                 };
             }
+        }
+
+        private BiomTemplate GetBiomtemplateByType(BiomType type)
+        {
+            foreach (BiomTemplate template in _bioms_templates)
+                if (template.Type == type)
+                    return template;
+
+            return new();
         }
 
         private void PreprocessingDataToVoronoiAlgorithm()

@@ -174,10 +174,10 @@ MonoBehaviour:
     PlacementAlgorithmType: 0
     HeightAlgorithmType: 1
     SpawnFrequency: 0.05
-    Height: 43
+    Height: 47
     HeightOffset: 0
-    TerrainHeightBorders: {x: 0, y: 45}
-    ScaleInterval: {x: 1, y: 1}
+    TerrainHeightBorders: {x: 0, y: 50}
+    ScaleInterval: {x: 3.2, y: 3.2}
 --- !u!1 &65917794
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb095e212e324994dab3f8b43b358844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _biom_type: 2
+  _biom_type: 3
   _height_map: {fileID: 188059458}
   _texture_map: {fileID: 188059457}
   _objects: {fileID: 188059456}
@@ -1276,7 +1276,7 @@ MonoBehaviour:
   _textures_set: {fileID: 1311042769}
   _objects_set: {fileID: 1909941271}
   Bioms: {fileID: 2106083961}
-  Seed: 124124
+  Seed: 12213
 --- !u!4 &714755974
 Transform:
   m_ObjectHideFlags: 0
@@ -1635,7 +1635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb095e212e324994dab3f8b43b358844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _biom_type: 2
+  _biom_type: 1
   _height_map: {fileID: 1139115589}
   _texture_map: {fileID: 1139115588}
   _objects: {fileID: 1139115587}
@@ -2272,7 +2272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb095e212e324994dab3f8b43b358844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _biom_type: 1
+  _biom_type: 0
   _height_map: {fileID: 1876848750}
   _texture_map: {fileID: 1876848752}
   _objects: {fileID: 1876848753}
@@ -2516,7 +2516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iteration_number: 5
-  _size: 100
+  _size: 20
   _borders:
     x: -1000
     y: 1000

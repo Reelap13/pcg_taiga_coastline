@@ -121,7 +121,6 @@ namespace PCG_Map.Chunk
 
                 obj.transform.localScale = new(obj_data.Scale, obj_data.Scale, obj_data.Scale);
             }
-            Debug.Log($"Hi, {chunk.Objects.Length} objects was generated!");
         }
     }
 }
