@@ -1276,7 +1276,7 @@ MonoBehaviour:
   _textures_set: {fileID: 1311042769}
   _objects_set: {fileID: 1909941271}
   Bioms: {fileID: 2106083961}
-  Seed: 12213
+  Seed: 124124
 --- !u!4 &714755974
 Transform:
   m_ObjectHideFlags: 0
@@ -2463,6 +2463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2106083960}
   - component: {fileID: 2106083961}
+  - component: {fileID: 2106083962}
   m_Layer: 0
   m_Name: BiomsController
   m_TagString: Untagged
@@ -2501,6 +2502,42 @@ MonoBehaviour:
   _centers_number: 100
   _borders: {x: -1000, y: -1000, z: 1000, w: 1000}
   _seed: 32
+  _biom_map_generator: {fileID: 2106083962}
+--- !u!114 &2106083962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106083959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40904c06fdb894644a01084a5db73923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iteration_number: 5
+  _size: 100
+  _borders:
+    x: -1000
+    y: 1000
+  _path: Assets/BiomMap.png
+  _bioms_data:
+  - BiomType: 0
+    SpawningProbability: 0.4
+    ChangingFromProbability: 1
+    ChangingToProbability: 0.5
+  - BiomType: 1
+    SpawningProbability: 0.5
+    ChangingFromProbability: 1
+    ChangingToProbability: 0.3
+  - BiomType: 2
+    SpawningProbability: 0.05
+    ChangingFromProbability: 0.1
+    ChangingToProbability: 0.05
+  - BiomType: 3
+    SpawningProbability: 0.05
+    ChangingFromProbability: 0.15
+    ChangingToProbability: 0.15
 --- !u!1 &2139570845
 GameObject:
   m_ObjectHideFlags: 0

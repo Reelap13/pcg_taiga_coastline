@@ -29,6 +29,7 @@ namespace PCG_Map
             _objects_set.Initialize();
 
             Bioms.Initialize();
+            return;
             HeightsAgent.Initialize();
             TexturesAgent.Initialize();
             ObjectsAgent.Initialize();

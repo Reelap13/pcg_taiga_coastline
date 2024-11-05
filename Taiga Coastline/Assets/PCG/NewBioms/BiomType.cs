@@ -6,11 +6,9 @@ namespace PCG_Map.New_Bioms
 {
     public enum BiomType
     {
-        SEA,
         FOREST,
         FIELD,
         MOUNTAIN,
-        Lake,
-        UNKNOWN
+        Lake
     }
 }

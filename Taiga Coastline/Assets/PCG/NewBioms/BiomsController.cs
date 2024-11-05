@@ -1,4 +1,5 @@
 using PCG_Map.Algorithms;
+using PCG_Map.Algorithms.CelluralAutomata;
 using PCG_Map.Algorithms.Voronoi;
 using PCG_Map.Heights;
 using PCG_Map.New_Bioms.Creator;
@@ -20,6 +21,7 @@ namespace PCG_Map.New_Bioms
         [SerializeField] private int _centers_number = 100;
         [SerializeField] private Vector4 _borders = new Vector4(-1000, -1000, 1000, 1000);
         [SerializeField] private float _seed;
+        [SerializeField] private CellularAutomataAlgorithm _biom_map_generator;
 
         private BiomCreator[] _bioms_creators;
         private BiomTemplate[] _bioms_templates;
@@ -30,6 +32,7 @@ namespace PCG_Map.New_Bioms
 
         public void Initialize()
         {
+            _biom_map_generator.Initialize();
             LoadBiomsTemplates();
             GenerateBioms();
             PreprocessingDataToVoronoiAlgorithm();
