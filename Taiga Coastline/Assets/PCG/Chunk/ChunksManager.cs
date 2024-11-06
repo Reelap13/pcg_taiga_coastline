@@ -15,9 +15,10 @@ namespace PCG_Map.Chunk
 
         [SerializeField] private int radius = 3;
         [SerializeField] private int _radius_number_to_disactivate = 3;
+        [SerializeField] private int _chunk_processing_at_once_times = 4;
 
-        private Dictionary<Vector2Int, Chunk> _created_chunks;
-        private Dictionary<Vector2Int, Chunk> _active_chunks;
+        private Dictionary<Vector2Int, ChunkData> _created_chunks;
+        private Dictionary<Vector2Int, ChunkData> _active_chunks;
         private List<Vector2Int> _creating_chunks;
 
         private Vector2Int _target_chunk_position;
@@ -27,6 +28,12 @@ namespace PCG_Map.Chunk
             _created_chunks = new();
             _active_chunks = new();
             _creating_chunks = new();
+            _chunks_factory.OnChunkCreating.AddListener((ChunkData data) =>
+            {
+                Vector2Int position = new((int)data.Position.x, (int)data.Position.y);
+                _created_chunks.Add(position, data);
+                _creating_chunks.Remove(position);
+            });
             _player_tracker.OnMovingToOtherChunk.AddListener(UpdateTargetChunk);
             _player_tracker.Initialize();
         }
@@ -34,10 +41,11 @@ namespace PCG_Map.Chunk
         private void UpdateTargetChunk(Vector2Int position)
         {
             _target_chunk_position = position;
-            StartCoroutine(LoadChunks(position));
+            LoadChunks(position);
+            //StartCoroutine(LoadChunks(position));
         }
 
-        private IEnumerator LoadChunks(Vector2Int start_position)
+        private void LoadChunks(Vector2Int start_position)
         {
             DisactivateAllChunks();
 
@@ -57,38 +65,32 @@ namespace PCG_Map.Chunk
                     else
                     {
                         _creating_chunks.Add(position);
-                        noncreated_chunks.Add(position);
+                        _chunks_factory.CreateChunk(position);
+                        //noncreated_chunks.Add(position);
                     }
                 }
             }
-
             foreach (var chunk in created_chunks)
-                _created_chunks[chunk].ChunkObj.SetActive(true);
-
-            foreach (var chunk in noncreated_chunks)
-            {
-                StartCoroutine(CreateChunk(chunk));
-                yield return null;
-            }
+                _created_chunks[chunk].Obj.SetActive(true);
         }
 
         private IEnumerator CreateChunk(Vector2Int position)
         {
-            Chunk new_chunk = _chunks_factory.CreateChunk(position);
+            //Chunk new_chunk = _chunks_factory.CreateChunk(position);
             yield return null;
-            _created_chunks.Add(position, new_chunk);
+            /*_created_chunks.Add(position, new_chunk);
             if (IsInTargetsChunks(position))
                 _active_chunks.Add(position, new_chunk);
             else new_chunk.ChunkObj.SetActive(false);
             //_active_chunks.Add(position, new_chunk);
-            _creating_chunks.Remove(position);
+            _creating_chunks.Remove(position);*/
         }
 
         private void DisactivateAllChunks()
         {
             foreach(Vector2Int position in _created_chunks.Keys)
                 if (!IsInTargetsChunks(position))
-                    _created_chunks[position].ChunkObj.SetActive(false);
+                    _created_chunks[position].Obj.SetActive(false);
 
             _active_chunks.Clear();
         }

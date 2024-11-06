@@ -1,8 +1,11 @@
 using PCG_Map.Chunk;
 using PCG_Map.Heights;
+using PCG_Map.New_Bioms;
+using PCG_Map.Objects;
 using PCG_Map.Textures;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 namespace PCG_Map
@@ -12,20 +15,26 @@ namespace PCG_Map
         [SerializeField] private ChunksManager _chunk_manager;
         [field: SerializeField] public HeightsAgent HeightsAgent;
         [field: SerializeField] public TexturesAgent TexturesAgent;
+        [field: SerializeField] public ObjectsAgent ObjectsAgent;
 
+        [field: SerializeField] public TexturesSet _textures_set;
+        [field: SerializeField] public ObjectsSet _objects_set;
+
+        [field: SerializeField] public BiomsController Bioms;
         [field: SerializeField] public int Seed;
 
         private void Start()
         {
-            StartCoroutine(GenerateMainAgent());
-        }
+            _textures_set.Initialize();
+            _objects_set.Initialize();
 
-        private IEnumerator GenerateMainAgent()
-        {
-            yield return null;
+            Bioms.Initialize();
             HeightsAgent.Initialize();
             TexturesAgent.Initialize();
-            yield return null;
+            ObjectsAgent.Initialize();
+
+            Bioms.RegisterBioms();
+
             _chunk_manager.Initialize();
         }
     }

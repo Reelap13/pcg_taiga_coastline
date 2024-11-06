@@ -6,10 +6,10 @@ namespace PCG_Map.Textures
 {
     public class TexturesSet : Singleton<TexturesSet>
     {
-        [SerializeField] private Texture2D[] _texture;
+        [SerializeField] private Texture2D[] _textures;
 
-        private Dictionary<int, TextureData> _id_to_texture;
-        private Dictionary<Texture2D, TextureData> _texture_to_id;
+        private Dictionary<int, TextureSetData> _id_to_texture;
+        private Dictionary<Texture2D, TextureSetData> _texture_to_id;
 
         public void Initialize()
         {
@@ -18,9 +18,9 @@ namespace PCG_Map.Textures
             _id_to_texture = new();
             _texture_to_id = new();
 
-            foreach (Texture2D texture in _texture)
+            foreach (Texture2D texture in _textures)
             {
-                TextureData data = new(texture, id);
+                TextureSetData data = new(texture, id);
                 _id_to_texture.Add(id, data);
                 _texture_to_id.Add(texture, data);
 
@@ -28,7 +28,7 @@ namespace PCG_Map.Textures
             }
         }
 
-        public TextureData GetTextureData(int id)
+        public TextureSetData GetTextureData(int id)
         {
             if (IsExisted(id))
                 return _id_to_texture[id];
@@ -37,7 +37,7 @@ namespace PCG_Map.Textures
             return null;
         }
 
-        public TextureData GetTextureData(Texture2D texture)
+        public TextureSetData GetTextureData(Texture2D texture)
         {
             if (IsExisted(texture))
                 return _texture_to_id[texture];
@@ -48,5 +48,6 @@ namespace PCG_Map.Textures
 
         private bool IsExisted(int id) {  return _id_to_texture.ContainsKey(id); }
         private bool IsExisted(Texture2D texture) {  return _texture_to_id.ContainsKey(texture); }
+        public int TexturesNumber { get { return _textures.Length; } }
     }
 }
