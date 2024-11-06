@@ -170,10 +170,10 @@ MonoBehaviour:
   _prefabs:
   - {fileID: 6263245627480182244, guid: 31bc31c0a9fc7f0489ea5d29d58e8ebc, type: 3}
   _data:
-    SpawnAlgorithmType: 2
+    SpawnAlgorithmType: 3
     PlacementAlgorithmType: 0
     HeightAlgorithmType: 1
-    SpawnFrequency: 0.05
+    SpawnFrequency: 1
     Height: 47
     HeightOffset: 0
     TerrainHeightBorders: {x: 0, y: 50}
@@ -246,6 +246,7 @@ Transform:
   - {fileID: 1498875132}
   - {fileID: 229633083}
   - {fileID: 1454298303}
+  - {fileID: 1952613699}
   m_Father: {fileID: 1139115586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180937098
@@ -713,18 +714,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabs:
-  - {fileID: 1046453777464574, guid: 1aad01ae01d836647b215e40f1f4c1a7, type: 3}
-  - {fileID: 1269754475505960, guid: 186ecc7a1f977cc4fab5658c00fa3c4d, type: 3}
-  - {fileID: 1143931805411576, guid: f71e980e020ab924ebed9a227a648ec8, type: 3}
+  - {fileID: 5186735023776687486, guid: ac8efb728f1fb9b4092c4df591c827ca, type: 3}
+  - {fileID: 3899520030806763256, guid: 299e7a1cb6456cf4fa6079cf5978df9b, type: 3}
   _data:
     SpawnAlgorithmType: 0
     PlacementAlgorithmType: 2
     HeightAlgorithmType: 0
-    SpawnFrequency: 0.01
+    SpawnFrequency: 0.3
     Height: -1
     HeightOffset: 0
     TerrainHeightBorders: {x: 0, y: 600}
-    ScaleInterval: {x: 20, y: 40}
+    ScaleInterval: {x: 0.3, y: 0.4}
 --- !u!1 &300819146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,7 +1948,7 @@ MonoBehaviour:
   <ChunksFactory>k__BackingField: {fileID: 1339447818}
   _textures_agent: {fileID: 0}
   _terrain_creator: {fileID: 0}
-  _object_number_per_field: 2
+  _object_number_per_field: 4
 --- !u!1 &1413145848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2047,7 +2047,7 @@ MonoBehaviour:
     SpawnAlgorithmType: 0
     PlacementAlgorithmType: 2
     HeightAlgorithmType: 0
-    SpawnFrequency: 0.5
+    SpawnFrequency: 0.9
     Height: -1
     HeightOffset: 0
     TerrainHeightBorders: {x: 0, y: 600}
@@ -2103,7 +2103,7 @@ MonoBehaviour:
     SpawnAlgorithmType: 0
     PlacementAlgorithmType: 2
     HeightAlgorithmType: 0
-    SpawnFrequency: 0.5
+    SpawnFrequency: 0.9
     Height: -1
     HeightOffset: 0
     TerrainHeightBorders: {x: 0, y: 600}
@@ -2153,7 +2153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabs:
-  - {fileID: 1210459693873458, guid: d8ebd34c38d3d0a40b5422c0fd136471, type: 3}
+  - {fileID: 1490343738201892, guid: 8f8e8b461fdf4c140a82a526fc737dfb, type: 3}
   _data:
     SpawnAlgorithmType: 0
     PlacementAlgorithmType: 2
@@ -2398,6 +2398,62 @@ Transform:
   - {fileID: 50398519}
   m_Father: {fileID: 188059455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1952613698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1952613699}
+  - component: {fileID: 1952613700}
+  m_Layer: 0
+  m_Name: Stone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1952613699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952613698}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 82366079}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1952613700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952613698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462a847792ecc7e4e92a010cc7c876dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabs:
+  - {fileID: 1198013417640408, guid: ac1cc01cb5dbf5d4f869c403b38f8a21, type: 3}
+  - {fileID: 1451074748068950, guid: 29636f40562819649b730c52f1babbcb, type: 3}
+  _data:
+    SpawnAlgorithmType: 0
+    PlacementAlgorithmType: 2
+    HeightAlgorithmType: 0
+    SpawnFrequency: 0.005
+    Height: -1
+    HeightOffset: 0
+    TerrainHeightBorders: {x: 0, y: 600}
+    ScaleInterval: {x: 0.7, y: 2.4}
 --- !u!1 &2049122678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,6 +2577,7 @@ MonoBehaviour:
     x: -1000
     y: 1000
   _path: Assets/BiomMap.png
+  _draw_coeffitient: 10
   _bioms_data:
   - BiomType: 0
     SpawningProbability: 0.4

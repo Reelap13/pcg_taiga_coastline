@@ -33,6 +33,7 @@ namespace PCG_Map.New_Bioms.Creator
                 data.SpawnAlgorithmType = (ObjectSpawnAlgorithmType)EditorGUILayout.EnumPopup("Spawn Algorithm", data.SpawnAlgorithmType);
                 switch (data.SpawnAlgorithmType)
                 {
+                    case ObjectSpawnAlgorithmType.MULIPLE_BY_SPAWN_FREQUENCY:
                     case ObjectSpawnAlgorithmType.BY_SPAWN_FREQUENCY:
                         data.SpawnFrequency = EditorGUILayout.FloatField("Spawn Frequency", data.SpawnFrequency);
                         break;

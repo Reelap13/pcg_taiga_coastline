@@ -15,6 +15,7 @@ namespace PCG_Map.Algorithms.CelluralAutomata
         [SerializeField] private int _size = 100;
         [SerializeField] private float2 _borders = new float2(-1000, 1000);
         [SerializeField] private string _path = "Assets/BiomMap.png";
+        [SerializeField] private int _draw_coeffitient = 10;
 
         [SerializeField] private BiomData[] _bioms_data;
 
@@ -63,7 +64,7 @@ namespace PCG_Map.Algorithms.CelluralAutomata
 
         private void DrawBiomMap()
         {
-            Texture2D texture = new Texture2D(_size, _size);
+            Texture2D texture = new Texture2D(_size * _draw_coeffitient, _size * _draw_coeffitient);
 
             for (int x = 0; x < _size; ++x)
             {
@@ -85,7 +86,9 @@ namespace PCG_Map.Algorithms.CelluralAutomata
                             color = new Color(70 / 256f, 130 / 256f, 180 / 256f);
                             break;
                     }
-                    texture.SetPixel(x, y, color);
+                    for (int i = 0; i < _draw_coeffitient; ++i)
+                        for (int j = 0; j < _draw_coeffitient; ++j)
+                            texture.SetPixel(x * _draw_coeffitient + i, y * _draw_coeffitient + j, color);
                 }
             }
             texture.Apply();

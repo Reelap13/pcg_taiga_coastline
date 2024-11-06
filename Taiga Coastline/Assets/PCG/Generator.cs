@@ -36,17 +36,6 @@ namespace PCG_Map
             Bioms.RegisterBioms();
 
             _chunk_manager.Initialize();
-            //_chunk_manager.Initialize();
-            //StartCoroutine(GenerateMainAgent());
-        }
-
-        private IEnumerator GenerateMainAgent()
-        {
-            
-            HeightsAgent.Initialize();
-            TexturesAgent.Initialize();
-            yield return null;
-            _chunk_manager.Initialize();
         }
     }
 }

@@ -95,17 +95,17 @@ namespace PCG_Map.Objects
         private void ProcessObjectPrefab(ObjectPrefabData obj_prefab, float2 position, 
             ref Unity.Mathematics.Random random, NativeHashSet<ObjectPrefabData> one_per_chunk_objects)
         {
-            if (!IsSpawnable(obj_prefab, position, ref random, one_per_chunk_objects))
-                return;
+            int number = GetSpawnObjects(obj_prefab, position, ref random, one_per_chunk_objects);
 
-            Objects.AddNoResize(new ObjectData
-            {
-                PrefabID = obj_prefab.PrefabID,
-                Position = GetObjectPosition(obj_prefab, position, ref random),
-                Height = GetObjectHeight(obj_prefab),
-                Rotation = GetRotateion(ref random),
-                Scale = GetScale(obj_prefab, ref random)
-            });
+            for (int _ = 0; _ < number; ++_)
+                Objects.AddNoResize(new ObjectData
+                {
+                    PrefabID = obj_prefab.PrefabID,
+                    Position = GetObjectPosition(obj_prefab, position, ref random),
+                    Height = GetObjectHeight(obj_prefab),
+                    Rotation = GetRotateion(ref random),
+                    Scale = GetScale(obj_prefab, ref random)
+                });
         }
 
         private void ProcessOneSpawnableObjectPrefab(ObjectPrefabData obj_prefab, ref Unity.Mathematics.Random random)
@@ -122,24 +122,25 @@ namespace PCG_Map.Objects
             }); ;
         }
 
-        private bool IsSpawnable(ObjectPrefabData obj_prefab, float2 position, 
+        private int GetSpawnObjects(ObjectPrefabData obj_prefab, float2 position, 
             ref Unity.Mathematics.Random random, NativeHashSet<ObjectPrefabData> one_per_chunk_objects)
         {
             float height = HeightMap.GetData(position) * TerrainHeight;
             if (!(obj_prefab.TerrainHeightBorders.x < height && height < obj_prefab.TerrainHeightBorders.y))
-                return false;
+                return 0;
 
 
             switch (obj_prefab.SpawnAlgorithmType)
             {
-                case ObjectSpawnAlgorithmType.ALWAYS_ONE: return true;
-                case ObjectSpawnAlgorithmType.BY_SPAWN_FREQUENCY: return random.NextFloat() > (1 - obj_prefab.SpawnFrequency);
+                case ObjectSpawnAlgorithmType.ALWAYS_ONE: return 1;
+                case ObjectSpawnAlgorithmType.BY_SPAWN_FREQUENCY: return random.NextFloat() > (1 - obj_prefab.SpawnFrequency) ? 1 : 0;
                 case ObjectSpawnAlgorithmType.ALWAIS_ONE_PER_CHUNK:
                     one_per_chunk_objects.Add(obj_prefab);
-                    return false;
-            }
+                    return 0;
+                case ObjectSpawnAlgorithmType.MULIPLE_BY_SPAWN_FREQUENCY: return (int)random.NextFloat(0, obj_prefab.SpawnFrequency);
+            } 
 
-            return false;
+            return 0;
         }
 
         private float2 GetObjectPosition(ObjectPrefabData obj_prefab, float2 position, ref Unity.Mathematics.Random random)
